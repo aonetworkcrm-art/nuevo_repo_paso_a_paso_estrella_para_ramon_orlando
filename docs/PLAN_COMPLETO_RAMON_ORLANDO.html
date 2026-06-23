@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>☢️ NUCLEAR AIMA — Plan Completo · Ramón Orlando</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#fff;color:#1a1a2e;padding:0;line-height:1.5}
+
+/* ===== COVER PAGE ===== */
+.cover{page-break-after:always;min-height:1050px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:60px 40px;background:linear-gradient(135deg,#0a0a1a 0%,#1a1a3e 50%,#0a0a1a 100%);color:#fff}
+.cover .logo{font-size:60px;margin-bottom:16px}
+.cover h1{font-size:36px;font-weight:800;letter-spacing:3px;margin-bottom:8px;color:#c9a96e}
+.cover .subtitle{font-size:18px;color:rgba(255,255,255,0.7);letter-spacing:2px;margin-bottom:30px;font-weight:300}
+.cover .line{width:80px;height:2px;background:#c9a96e;margin:20px auto}
+.cover .detail{font-size:13px;color:rgba(255,255,255,0.5);letter-spacing:1px;margin-top:40px;line-height:2}
+.cover .detail strong{color:rgba(255,255,255,0.8)}
+.cover .badge{display:inline-block;border:1px solid rgba(201,169,110,0.3);padding:6px 20px;font-size:11px;letter-spacing:3px;color:#c9a96e;text-transform:uppercase;margin-top:30px}
+
+/* ===== PAGES ===== */
+.page{page-break-after:always;padding:50px 45px;max-width:900px;margin:0 auto}
+.page:last-child{page-break-after:auto}
+.page-header{border-bottom:2px solid #1a1a2e;padding-bottom:14px;margin-bottom:28px;display:flex;justify-content:space-between;align-items:flex-end}
+.page-header h2{font-size:22px;font-weight:700;color:#1a1a2e;letter-spacing:1px}
+.page-header .page-num{font-size:11px;color:#888;letter-spacing:1px}
+.page-title{font-size:14px;color:#c9a96e;text-transform:uppercase;letter-spacing:2px;margin-bottom:4px;font-weight:600}
+.section-title{font-size:16px;font-weight:700;color:#1a1a2e;margin:22px 0 10px;padding-bottom:6px;border-bottom:1px solid #eee}
+.section-title.gold{color:#c9a96e}
+p{font-size:12px;color:#333;margin-bottom:8px;line-height:1.7}
+.highlight{background:#f8f6f0;border-left:3px solid #c9a96e;padding:10px 14px;margin:10px 0;font-size:11px;line-height:1.6}
+.highlight.gold{background:#fffbf0;border-left-color:#d4a017}
+.highlight.red{background:#fff0f0;border-left-color:#cc3333}
+.highlight.green{background:#f0fff4;border-left-color:#2e8b57}
+
+/* ===== TABLES ===== */
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:10.5px}
+th{background:#1a1a2e;color:#fff;padding:7px 8px;text-align:left;font-size:9px;letter-spacing:1px;text-transform:uppercase}
+td{padding:6px 8px;border-bottom:1px solid #e0e0e0;color:#333}
+tr:nth-child(even){background:#f9f9f9}
+tr:hover{background:#f0f0f0}
+.num{text-align:right;font-weight:600}
+.gold{color:#c9a96e;font-weight:700}
+.grn{color:#2e8b57;font-weight:700}
+.red{color:#cc3333}
+
+/* ===== PHASES ===== */
+.phase-box{border:1px solid #e0e0e0;padding:16px;margin-bottom:12px;page-break-inside:avoid}
+.phase-box h3{font-size:13px;font-weight:700;color:#1a1a2e;margin-bottom:4px;letter-spacing:0.5px}
+.phase-box .phase-meta{font-size:9px;color:#888;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.phase-box .phase-cost{font-size:10px;color:#c9a96e;font-weight:600}
+.phase-box p{font-size:11px;margin-bottom:4px}
+.phase-box ul{padding-left:16px;margin:4px 0}
+.phase-box ul li{font-size:10.5px;color:#444;margin-bottom:2px;list-style-type:disc}
+
+/* ===== STATS ===== */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
+.stat-card{text-align:center;padding:14px 10px;background:#f9f9f9;border:1px solid #e0e0e0}
+.stat-card .num{font-size:22px;font-weight:800;color:#1a1a2e}
+.stat-card .lbl{font-size:8px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+
+/* ===== LEGAL FLOW ===== */
+.flow{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:12px 0}
+.flow-item{background:#1a1a2e;color:#fff;padding:6px 12px;font-size:9px;letter-spacing:1px;text-transform:uppercase;font-weight:600}
+.flow-arrow{color:#ccc;font-size:14px;padding:0 2px;line-height:28px}
+
+/* ===== MESSAGE ===== */
+.msg-box{background:#f9f9f9;border:1px solid #e0e0e0;padding:12px 14px;margin:8px 0;page-break-inside:avoid}
+.msg-box .msg-label{font-size:8px;text-transform:uppercase;letter-spacing:2px;color:#c9a96e;margin-bottom:4px}
+.msg-box .msg-subject{font-size:11px;font-weight:600;color:#1a1a2e;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid #e0e0e0}
+.msg-box p{font-size:10.5px;margin-bottom:3px;color:#444}
+
+/* ===== CHECKLIST ===== */
+.cl{margin:8px 0}
+.cl-item{font-size:10.5px;padding:3px 0;color:#333;line-height:1.8}
+.cl-item .box{display:inline-block;width:12px;height:12px;border:1px solid #aaa;margin-right:6px;vertical-align:middle}
+
+/* ===== MONEY FLOW ===== */
+.money-flow{background:#f9f9f9;border:1px solid #e0e0e0;padding:14px;margin:10px 0;font-family:monospace;font-size:11px;line-height:2}
+
+/* ===== FOOTER ===== */
+.footer{text-align:center;font-size:8px;color:#aaa;letter-spacing:1px;margin-top:30px;padding-top:14px;border-top:1px solid #e0e0e0}
+
+@media print{
+  body{background:#fff}
+  .cover{min-height:100vh}
+  .page{max-width:100%}
+  .phase-box{break-inside:avoid}
+  table{break-inside:avoid}
+  .msg-box{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== COVER ===== -->
+<div class="cover">
+  <div class="logo">☢️</div>
+  <h1>NUCLEAR AIMA</h1>
+  <div class="subtitle">PLAN ESTRATÉGICO COMPLETO</div>
+  <div class="line"></div>
+  <div style="font-size:15px;color:rgba(255,255,255,0.8);letter-spacing:2px;margin-top:20px">Catálogo Ramón Orlando</div>
+  <div style="font-size:13px;color:rgba(201,169,110,0.8);margin-top:6px">50 Años de Música · 178 Canciones · 300M+ Reproducciones</div>
+  <div class="line"></div>
+  <div class="detail">
+    Preparado para: <strong>Ramón Orlando Valoy</strong><br>
+    Desarrollado por: <strong>Romny A. Regalado Maria</strong><br>
+    Fecha: <strong>Junio 2026</strong><br>
+    Evento ancla: <strong>23 de Septiembre · Estadio Olímpico Félix Sánchez</strong>
+  </div>
+  <div class="badge">Documento Confidencial</div>
+</div>
+
+<!-- ===== PAGE 1: RESUMEN EJECUTIVO ===== -->
+<div class="page">
+  <div class="page-header">
+    <h2>📊 Resumen Ejecutivo</h2>
+    <div class="page-num">Página 1</div>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card"><div class="num">8</div><div class="lbl">Fases del Plan</div></div>
+    <div class="stat-card"><div class="num">178</div><div class="lbl">Canciones</div></div>
+    <div class="stat-card"><div class="num">17</div><div class="lbl">Álbumes</div></div>
+    <div class="stat-card"><div class="num">300M+</div><div class="lbl">Reproducciones</div></div>
+    <div class="stat-card"><div class="num">6</div><div class="lbl">Catálogos Token</div></div>
+    <div class="stat-card"><div class="num">$500K-1M</div><div class="lbl">Adelanto Objetivo</div></div>
+  </div>
+
+  <div class="section-title">El Problema</div>
+  <p>El catálogo de Ramón Orlando — 178 canciones en 17 álbumes a lo largo de 50 años de trayectoria — acumula más de 300 millones de reproducciones activas en plataformas digitales. Sin embargo, actualmente <strong>no está generando ingresos para el artista</strong>. El dinero de esas reproducciones está siendo capturado por canales de terceros o simplemente se pierde por falta de administración digital.</p>
+
+  <div class="section-title">La Solución</div>
+  <p>Un plan estratégico de 8 fases que abarca desde la fundación legal del sello independiente hasta la tokenización del catálogo y la ejecución del evento del 50 Aniversario. El objetivo es doble:</p>
+  <div class="highlight">1️⃣ <strong>Recuperar el dinero perdido</strong> — SoundExchange retroactivo estimado en $40,000-$80,000 USD<br>
+  2️⃣ <strong>Activar el flujo de regalías futuro</strong> — Proyección de $95,000-$140,000 USD/mes bajo administración activa</div>
+
+  <div class="section-title">El Catalizador</div>
+  <p>El concierto del <strong>23 de septiembre de 2026</strong> en el Estadio Olímpico Félix Sánchez, con más de 40 artistas invitados, es el argumento más poderoso para que las multinacionales actúen con urgencia. El pico de búsquedas y streaming que generará el evento justifica un adelanto de <strong>$500,000 a $1,000,000 USD</strong> contra regalías futuras.</p>
+
+  <div class="section-title">Línea de Tiempo</div>
+  <table>
+    <tr><th>Semana</th><th>Hito</th></tr>
+    <tr><td>1-2</td><td>ONAPI + Constitución SRL</td></tr>
+    <tr><td>3</td><td>ONDA (Productor Fonográfico) + Carta Autorización</td></tr>
+    <tr><td>4</td><td>Pitch a Believe / The Orchard</td></tr>
+    <tr><td>4-8</td><td>Negociación del adelanto</td></tr>
+    <tr><td>Mes 3-4</td><td>LLC Wyoming + Tokenización</td></tr>
+    <tr><td>Mes 4-6</td><td>Preventa evento + Marketing</td></tr>
+    <tr><td>23 Sep</td><td>🎯 Evento 50 Aniversario · Estadio Olímpico</td></tr>
+  </table>
+</div>
+
+<!-- ===== PAGE 2: MARCO LEGAL ===== -->
+<div class="page">
+  <div class="page-header">
+    <h2>⚖️ Fundación Legal en RD</h2>
+    <div class="page-num">Página 2</div>
+  </div>
+  <p>Sin la estructura legal correcta, ninguna distribuidora internacional puede firmar contratos ni pagar regalías. Esta fase convierte la idea en una empresa real con poder legal. <strong>Inversión total: ~$1,000 USD (~RD$55,000)</strong></p>
+
+  <div class="flow">
+    <span class="flow-item">ONAPI</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-item">CÁMARA COMERCIO</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-item">DGII (RNC)</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-item">CTA BANCARIA</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-item">ONDA</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-item">CONTRATO</span>
+  </div>
+
+  <div class="phase-box">
+    <h3>📌 Paso 1: ONAPI — Registro del Nombre Comercial</h3>
+    <div class="phase-meta">Oficina Nacional de la Propiedad Industrial</div>
+    <table>
+      <tr><th>Detalle</th><th>Información</th></tr>
+      <tr><td>Qué registrar</td><td>Nombre Comercial en Clase 41 y 35</td></tr>
+      <tr><td>Costo</td><td class="num gold">RD$4,755 (~$100 USD)</td></tr>
+      <tr><td>Tiempo</td><td>5-10 días hábiles</td></tr>
+      <tr><td>Portal</td><td>onapi.gob.do — E-SERPI</td></tr>
+    </table>
+    <div class="highlight">💡 Registra ambas clases (41 y 35) en una sola solicitud. Te cuesta lo mismo y evitas repetir el trámite.</div>
+  </div>
+
+  <div class="phase-box">
+    <h3>📌 Paso 2: Constitución de la SRL</h3>
+    <div class="phase-meta">Sociedad de Responsabilidad Limitada · Capital mínimo RD$100,000</div>
+    <table>
+      <tr><th>Detalle</th><th>Información</th></tr>
+      <tr><td>Objeto social</td><td>Debe incluir distribución digital, administración de catálogos, explotación de fonogramas</td></tr>
+      <tr><td>Costo total</td><td class="num gold">RD$24,000-30,000 (~$450 USD)</td></tr>
+      <tr><td>Tiempo</td><td>15-20 días hábiles</td></tr>
+      <tr><td>Portal</td><td>formalizate.gob.do</td></tr>
+    </table>
+    <div class="highlight">💡 Abre la cuenta corporativa en Banreservas o BHD inmediatamente después del RNC. Necesaria para recibir transferencias internacionales de regalías.</div>
+  </div>
+
+  <div class="phase-box">
+    <h3>📌 Paso 3: ONDA — Productor Fonográfico</h3>
+    <div class="phase-meta">Oficina Nacional de Derecho de Autor</div>
+    <table>
+      <tr><th>Detalle</th><th>Información</th></tr>
+      <tr><td>Dirección</td><td>Av. Roberto Pastoriza #317, Ensanche Naco, Santo Domingo</td></tr>
+      <tr><td>Costo</td><td class="num gold">RD$8,000-10,000 (~$150 USD)</td></tr>
+      <tr><td>Tiempo</td><td>10-15 días hábiles</td></tr>
+      <tr><td>Teléfono</td><td>829-593-6632</td></tr>
+    </table>
+    <div class="highlight gold">💡 <strong>Ahorro clave:</strong> Pregunta por el registro de Obra Colectiva. Las 178 canciones como compilación cuestan menos de RD$10,000. Individualmente costarían más de RD$300,000.</div>
+  </div>
+
+  <div class="phase-box">
+    <h3>📌 Paso 4: Contrato Matriz de Administración</h3>
+    <div class="phase-meta">Redactado por abogado especializado en entretenimiento</div>
+    <table>
+      <tr><th>Cláusula</th><th>Detalle</th></tr>
+      <tr><td>Split de regalías</td><td class="gold">70% Artista / 30% Sello (fee de administración)</td></tr>
+      <tr><td>Duración</td><td>10 años con renovación automática</td></tr>
+      <tr><td>Claim & Monetize</td><td>No eliminar videos de terceros — reclamar monetización</td></tr>
+      <tr><td>Web3</td><td>Autorización expresa para tokenización</td></tr>
+      <tr><td>Costo</td><td class="num gold">RD$15,000-18,000 (~$300 USD)</td></tr>
+    </table>
+  </div>
+
+  <div class="footer">☢️ Nuclear AIMA · Plan Completo · Junio 2026</div>
+</div>
+
+<!-- ===== PAGE 3: LAS 8 FASES ===== -->
+<div class="page">
+  <div class="page-header">
+    <h2>⭐ Las 8 Fases del Plan Estrella</h2>
+    <div class="page-num">Página 3</div>
+  </div>
+
+  <div class="phase-box">
+    <h3>1. Fundación Legal Local</h3>
+    <div class="phase-meta">ONAPI → SRL → ONDA → Contrato Matriz</div>
+    <p>Registro del nombre comercial, constitución de la empresa, registro como productor fonográfico y contrato de administración. <span class="phase-cost">Inversión: ~$1,000 USD</span></p>
+  </div>
+
+  <div class="phase-box">
+    <h3>2. Auditoría del Catálogo</h3>
+    <div class="phase-meta">Herramienta de rastreo de nodos · Yield Analysis</div>
+    <p>Tu herramienta de auditoría rastrea cada canción en YouTube identificando entre 250-450 nodos por canción. Calcula yields y genera reporte ejecutivo. <span class="phase-cost">Costo: $0 (herramienta propia)</span></p>
+    <div class="highlight">📊 Las 12 canciones principales proyectan $19,640/mes. Catálogo completo: $95K-$140K/mes.</div>
+  </div>
+
+  <div class="phase-box">
+    <h3>3. Relación con el Artista</h3>
+    <div class="phase-meta">Contacto Gradual · Carta de Autorización</div>
+    <p>Ramón Orlando va a la ONDA con asistencia, firma carta de autorización notariada y provee la lista oficial de canciones. <span class="phase-cost">Costo: RD$3,000-10,000</span></p>
+  </div>
+
+  <div class="phase-box">
+    <h3>4. Plataformas de Cobro</h3>
+    <div class="phase-meta">SoundExchange · ASCAP/BMI · SGACEDOM</div>
+    <p>Registro gratuito en SoundExchange como Rights Owner y Featured Artist. Libera retroactivo de hasta 3 años. <span class="phase-cost">Potencial: $40K-$80K USD retenidos</span></p>
+    <div class="highlight red">⚠️ Se necesita W-8BEN para evitar retención del 30% por el IRS.</div>
+  </div>
+
+  <div class="phase-box">
+    <h3>5. Distribución y Content ID</h3>
+    <div class="phase-meta">DistroKid → Believe / The Orchard</div>
+    <p>Fase A: DistroKid genera ISRCs y activa Content ID. Fase B: Al confirmar el adelanto, se migra a Believe/The Orchard. <span class="phase-cost">Adelanto objetivo: $500K-$1M USD</span></p>
+  </div>
+
+  <div class="phase-box">
+    <h3>6. LLC Wyoming + Tokenización</h3>
+    <div class="phase-meta">Assignment of Rights · 6 Smart Contracts</div>
+    <p>Constitución de LLC en Wyoming. Cesión de derechos de explotación digital. Despliegue de 6 Smart Contracts en Base/Polygon. <span class="phase-cost">Costo: ~$100-$600 USD</span></p>
+  </div>
+
+  <div class="phase-box">
+    <h3>7. Evento 50 Aniversario — 23S</h3>
+    <div class="phase-meta">Estadio Olímpico · TuBoleta Pass · NFT</div>
+    <p>Alianza directa con TuBoleta (ya tienen blockchain nativo). Hospitalidad para la diáspora + streaming privado + red de 40+ afiliados. <span class="phase-cost">Ganancia estimada: $273,650+</span></p>
+  </div>
+
+  <div class="phase-box">
+    <h3>8. Escalabilidad</h3>
+    <div class="phase-meta">Replicación del modelo · Smartlinks · ROI 13-16x</div>
+    <p>Una vez que el catálogo de Ramón Orlando funciona como caso de éxito, el modelo se replica con otros artistas a costo marginal casi cero.</p>
+  </div>
+
+  <div class="footer">☢️ Nuclear AIMA · Plan Completo · Junio 2026</div>
+</div>
+
+<!-- ===== PAGE 4: AUDITORÍA Y CATÁLOGO ===== -->
+<div class="page">
+  <div class="page-header">
+    <h2>💿 Catálogo y Auditoría</h2>
+    <div class="page-num">Página 4</div>
+  </div>
+
+  <div class="section-title">Los 6 Catálogos Temáticos</div>
+  <p>Para presentar el catálogo a las multinacionales, las 178 canciones se organizan en 6 colecciones que cuentan una historia:</p>
+  <table>
+    <tr><th>Token</th><th>Catálogo</th><th>Período</th><th>Valor Estratégico</th></tr>
+    <tr><td><strong>RO-01</strong></td><td>Clásicos del Merengue</td><td>1975-1990</td><td>Ancla principal — mayor volumen histórico</td></tr>
+    <tr><td><strong>RO-02</strong></td><td>La Década de Oro</td><td>1990-2000</td><td>Reconocimiento internacional</td></tr>
+    <tr><td><strong>RO-03</strong></td><td>Baladas y Sentimiento</td><td>—</td><td>Sincronización cine/TV</td></tr>
+    <tr><td><strong>RO-04</strong></td><td>Colaboraciones</td><td>—</td><td>Multiplicador algorítmico</td></tr>
+    <tr><td><strong>RO-05</strong></td><td>Antología Espiritual</td><td>—</td><td>Mercado de bienestar</td></tr>
+    <tr><td><strong>RO-06</strong></td><td>50 Aniversario Remasterizado</td><td>2026</td><td>Evento 23S — mayor tráfico nuevo</td></tr>
+  </table>
+
+  <div class="section-title">Auditoría — 12 Canciones Principales</div>
+  <table>
+    <tr><th>Canción</th><th>Nodos Detectados</th><th>Ingreso/mes Estimado</th></tr>
+    <tr><td>Te Compro Tu Novia</td><td class="num">2,000+</td><td class="num gold">$2,840</td></tr>
+    <tr><td>No Hay Nadie Más</td><td class="num">310+</td><td class="num gold">$1,920</td></tr>
+    <tr><td>Gotas de Pena</td><td class="num">290+</td><td class="num gold">$1,680</td></tr>
+    <tr><td>15,500 Noches</td><td class="num">340+</td><td class="num gold">$2,200</td></tr>
+    <tr><td>Mujer Divina</td><td class="num">260+</td><td class="num gold">$1,400</td></tr>
+    <tr><td>El Merengue</td><td class="num">300+</td><td class="num gold">$1,760</td></tr>
+    <tr style="background:#f0f0f0"><td><strong>Total 12 canciones</strong></td><td class="num"><strong>3,350+</strong></td><td class="num gold"><strong>$19,640/mes</strong></td></tr>
+  </table>
+  <div class="highlight gold"><strong>Proyección catálogo completo (178 canciones):</strong> $95,000-$140,000 USD/mes · $1.14M-$1.68M USD/año</div>
+
+  <div class="section-title">Recuperación de Regalías</div>
+  <table>
+    <tr><th>Fuente</th><th>Potencial</th><th>Plazo</th></tr>
+    <tr><td>SoundExchange (retroactivo 3 años)</td><td class="num gold">$40,000-$80,000</td><td>Inmediato al registrarse</td></tr>
+    <tr><td>Content ID YouTube</td><td class="num gold">$2,000-$5,000/mes</td><td>1-3 meses</td></tr>
+    <tr><td>Streaming Spotify/Apple Music</td><td class="num gold">$1,000-$3,000/mes</td><td>1-3 meses</td></tr>
+    <tr><td>Adelanto Believe/The Orchard</td><td class="num gold">$500,000-$1,000,000</td><td>2-3 meses</td></tr>
+  </table>
+
+  <div class="footer">☢️ Nuclear AIMA · Plan Completo · Junio 2026</div>
+</div>
+
+<!-- ===== PAGE 5: MENSAJES MULTINACIONALES ===== -->
+<div class="page">
+  <div class="page-header">
+    <h2>🏢 Estrategia con las Multinacionales</h2>
+    <div class="page-num">Página 5</div>
+  </div>
+  <p><strong>Objetivo:</strong> Adelanto de $500,000 - $1,000,000 USD contra regalías futuras. El evento del 23 de septiembre es el catalizador de urgencia.</p>
+  <p><strong>Puertas de entrada:</strong> Contacto directo al equipo de Label Solutions en <strong>Believe</strong> (believe.com) o networking en conferencias como <strong>BIME</strong> y <strong>LAMC</strong> para <strong>The Orchard</strong>.</p>
+
+  <div class="msg-box">
+    <div class="msg-label">📨 Mensaje 1 — Primer contacto</div>
+    <div class="msg-subject">Oportunidad de distribución — Catálogo histórico de música tropical dominicana</div>
+    <p>Estimado equipo, me dirijo en representación de uno de los artistas más importantes de la música tropical del Caribe. Se trata de un compositor e intérprete dominicano con 50 años de trayectoria, 17 álbumes y 178 canciones originales.</p>
+    <p>Una auditoría reciente identificó 300M+ reproducciones verificables sin distribución formal activa. El artista celebra el 23 de septiembre su concierto de 50 Aniversario en el Estadio Olímpico con 40+ artistas invitados. Estamos formalizando la documentación de titularidad esta semana. ¿Podría indicarnos el contacto correcto en su organización?</p>
+  </div>
+
+  <div class="msg-box">
+    <div class="msg-label">📨 Mensaje 2 — Confirmación de avance</div>
+    <div class="msg-subject">Actualización — Catálogo Ramón Orlando / Titularidad en proceso</div>
+    <p>Adjuntamos el resumen ejecutivo de auditoría de las 12 canciones principales. El catálogo acumula reproducciones activas sin reclamo de derechos vigente, representando recuperación inmediata de ingresos desde el primer día de distribución activa.</p>
+  </div>
+
+  <div class="msg-box">
+    <div class="msg-label">📨 Mensaje 3 — Propuesta formal</div>
+    <div class="msg-subject">Propuesta formal — Catálogo Ramón Orlando / Solicitud de adelanto</div>
+    <p>Expediente completo: 178 canciones en 6 catálogos temáticos, titularidad certificada por la ONDA, auditoría con 300M+ reproducciones. Solicitud: $500,000 - $1,000,000 USD contra regalías futuras con recuperación proyectada en 3-4 años.</p>
+  </div>
+
+  <div class="msg-box">
+    <div class="msg-label">📨 Mensaje 4 — Cierre con fecha límite</div>
+    <div class="msg-subject">Decisión antes del 23 de septiembre</div>
+    <p>El concierto es en menos de 4 meses. Una distribuidora que entre ahora capturará el mayor pico de visibilidad orgánica del catálogo en décadas. Estamos en conversación paralela con otra firma.</p>
+  </div>
+
+  <div class="footer">☢️ Nuclear AIMA · Plan Completo · Junio 2026</div>
+</div>
+
+<!-- ===== PAGE 6: DIVISIÓN TÚ VS RAMÓN ===== -->
+<div class="page">
+  <div class="page-header">
+    <h2>👥 División de Responsabilidades</h2>
+    <div class="page-num">Página 6</div>
+  </div>
+
+  <div class="section-title">¿Quién hace qué?</div>
+  <p>Ramón Orlando hace 3 cosas: (1) va a la ONDA, (2) firma papeles, (3) toca en el evento. <strong>Tú haces todo lo demás.</strong></p>
+
+  <table>
+    <tr><th>Área</th><th style="color:#2e8b57">🦊 TÚ (Colmillo Blanco)</th><th style="color:#c9a96e">🎵 RAMÓN ORLANDO</th></tr>
+    <tr><td><strong>ONAPI</strong></td><td>Preparas solicitud, verificas nombre, pagas tasa</td><td>Firma documentos</td></tr>
+    <tr><td><strong>SRL</strong></td><td>Redactas estatutos, gestionas registro, obtienes RNC</td><td>Provee datos</td></tr>
+    <tr><td><strong>ONDA</strong></td><td>Acompañas, preparas lista 178 canciones</td><td class="gold"><strong>✅ Va personalmente</strong></td></tr>
+    <tr><td><strong>Auditoría</strong></td><td class="grn"><strong>✅ Corre herramienta</strong></td><td>Recibe resultados</td></tr>
+    <tr><td><strong>SoundExchange</strong></td><td class="grn"><strong>✅ Registra en línea</strong></td><td>Firma W-8BEN</td></tr>
+    <tr><td><strong>DistroKid</strong></td><td class="grn"><strong>✅ Sube catálogo</strong></td><td>Provee lista oficial</td></tr>
+    <tr><td><strong>Believe/Orchard</strong></td><td class="grn"><strong>✅ Negocia adelanto</strong></td><td class="gold"><strong>✅ Firma contrato</strong></td></tr>
+    <tr><td><strong>LLC Wyoming</strong></td><td class="grn"><strong>✅ Constituye</strong></td><td>Firma Assignment</td></tr>
+    <tr><td><strong>Tokenización</strong></td><td class="grn"><strong>✅ Deploya contratos</strong></td><td>Autoriza</td></tr>
+    <tr><td><strong>Evento 23S</strong></td><td class="grn"><strong>✅ Gestiona todo</strong></td><td>Se presenta y toca</td></tr>
+  </table>
+
+  <div class="section-title">Flujo del Dinero</div>
+  <div class="money-flow">
+  Multinacional (Believe / The Orchard)<br>
+        │<br>
+        ▼<br>
+  <strong>RAMÓN ORLANDO MUSIC RECORDS</strong><br>
+  (El sello del artista — 100% del adelanto llega aquí)<br>
+        │<br>
+        ├── <strong>70%</strong> → Ramón Orlando (dueño del catálogo)<br>
+        └── <strong>30%</strong> → Nuclear AIMA (fee de administración)<br>
+  </div>
+  <p style="font-size:10px;color:#888">El contrato de administración define este split. Todo es transparente y auditable.</p>
+
+  <div class="section-title">Lo que NO hacer</div>
+  <div class="highlight red">
+    ❌ No subir nada a distribución sin contrato firmado<br>
+    ❌ No prometer cifras sin el reporte de auditoría respaldándolas<br>
+    ❌ No mezclar el adelanto con gastos operativos del evento antes de tener la LLC<br>
+    ❌ No usar bots en zonas grises regulatorias sin asesoría legal<br>
+    ❌ No registrar obra de un artista sin su consentimiento explícito por escrito
+  </div>
+</div>
+
+<!-- ===== PAGE 7: EVENTO + TOKENIZACIÓN ===== -->
+<div class="page">
+  <div class="page-header">
+    <h2>🎫 Evento 23S + Tokenización</h2>
+    <div class="page-num">Página 7</div>
+  </div>
+
+  <div class="section-title gold">🎫 Evento 50 Aniversario — Estadio Olímpico</div>
+
+  <div class="stats">
+    <div class="stat-card"><div class="num">$23,650</div><div class="lbl">Ganancia 150 boletas</div></div>
+    <div class="stat-card"><div class="num">$250,000</div><div class="lbl">Streaming 10K accesos</div></div>
+    <div class="stat-card"><div class="num">40+</div><div class="lbl">Artistas afiliados</div></div>
+    <div class="stat-card"><div class="num">$273K+</div><div class="lbl">Total estimado</div></div>
+  </div>
+
+  <p><strong>TuBoleta Pass blockchain:</strong> TuBoleta RD ya tiene infraestructura blockchain nativa (TuBoleta Pass). La estrategia es <strong>aliarse directamente con TuBoleta</strong> — ellos emiten Special Guest A como boleta NFT, tu plataforma es el canal de venta internacional.</p>
+
+  <div class="phase-box">
+    <h3>📌 Paquete Hospitalidad Diáspora</h3>
+    <table>
+      <tr><th>Concepto</th><th>Valor</th></tr>
+      <tr><td>Boletas bloque corporativo</td><td>150 unidades</td></tr>
+      <tr><td>Costo total bloque (con descuento)</td><td class="num">~$16,950 USD</td></tr>
+      <tr><td>Precio paquete al público</td><td class="num gold">$499 USD/persona</td></tr>
+      <tr><td>Promo Paga 2 lleva 3</td><td class="num gold">$998 USD/grupo</td></tr>
+      <tr><td style="font-weight:700">Ganancia neta estimada</td><td class="num gold" style="font-weight:700">$23,650 USD</td></tr>
+    </table>
+    <p style="font-size:10px;color:#666;margin-top:6px">Incluye: boleto Special Guest A + transporte ejecutivo + kit mercancía premium + ticket NFC coleccionable + hub de hospitalidad</p>
+  </div>
+
+  <p><strong>Streaming privado:</strong> Acceso tokenizado a $25 USD. Mercado: diáspora en Nueva York, Miami, España, Puerto Rico. 10,000 accesos = $250,000 USD adicionales.</p>
+
+  <div class="section-title gold">🔗 Tokenización del Catálogo</div>
+  <table>
+    <tr><th>Paso</th><th>Detalle</th><th>Costo</th></tr>
+    <tr><td>1. Registered Agent</td><td>Northwest Registered Agent</td><td class="num">$25-300/año</td></tr>
+    <tr><td>2. Articles of Organization</td><td>Wyoming Secretary of State en línea</td><td class="num">$100</td></tr>
+    <tr><td>3. Operating Agreement</td><td>Documento interno de propiedad</td><td class="num">$0</td></tr>
+    <tr><td>4. EIN (Employer ID)</td><td>Formulario SS-4 vía fax al IRS</td><td class="num">Gratis</td></tr>
+    <tr><td>5. Cuenta bancaria</td><td>Mercury / Relay (fintech, online)</td><td class="num">Gratis</td></tr>
+    <tr><td>6. Smart Contracts</td><td>Base (Coinbase) o Polygon — 6 tokens RO-01 a RO-06</td><td class="num">~$50</td></tr>
+  </table>
+  <div class="highlight red">⚠️ Form 5472: obligatorio para LLC de dueño extranjero. Multa por omitirlo: $25,000.</div>
+</div>
+
+<!-- ===== PAGE 8: CHECKLIST FINAL ===== -->
+<div class="page">
+  <div class="page-header">
+    <h2>✅ Checklist del Plan Completo</h2>
+    <div class="page-num">Página 8</div>
+  </div>
+  <p>Marca cada tarea completada. Este checklist cubre el plan completo de principio a fin.</p>
+
+  <div class="phase-box">
+    <h3>🔵 FASE 1: Fundación Legal (~$1,000 USD)</h3>
+    <div class="cl">
+      <div class="cl-item"><span class="box"></span> Buscar disponibilidad del nombre en ONAPI</div>
+      <div class="cl-item"><span class="box"></span> Pagar tasa ONAPI (RD$4,755) y obtener certificado</div>
+      <div class="cl-item"><span class="box"></span> Redactar estatutos SRL con objeto social correcto</div>
+      <div class="cl-item"><span class="box"></span> Pagar impuesto constitución DGII (1% capital)</div>
+      <div class="cl-item"><span class="box"></span> Depositar expediente en Cámara de Comercio</div>
+      <div class="cl-item"><span class="box"></span> Recibir Registro Mercantil + Solicitar RNC</div>
+      <div class="cl-item"><span class="box"></span> Abrir cuenta bancaria corporativa (Banreservas/BHD)</div>
+      <div class="cl-item"><span class="box"></span> Registrar SRL como Productor Fonográfico en ONDA</div>
+      <div class="cl-item"><span class="box"></span> Redactar y firmar Contrato Matriz con abogado</div>
+    </div>
+  </div>
+
+  <div class="phase-box">
+    <h3>🟢 FASE 2-3: Auditoría + Artista</h3>
+    <div class="cl">
+      <div class="cl-item"><span class="box"></span> Obtener lista oficial de 178 canciones</div>
+      <div class="cl-item"><span class="box"></span> Correr auditoría de las 12 canciones principales</div>
+      <div class="cl-item"><span class="box"></span> Generar reporte PDF ejecutivo</div>
+      <div class="cl-item"><span class="box"></span> Acompañar a Ramón Orlando a la ONDA</div>
+      <div class="cl-item"><span class="box"></span> Firmar carta de autorización notariada</div>
+      <div class="cl-item"><span class="box"></span> Obtener W-8BEN firmado</div>
+    </div>
+  </div>
+
+  <div class="phase-box">
+    <h3>🟡 FASE 4-5: Cobro + Distribución</h3>
+    <div class="cl">
+      <div class="cl-item"><span class="box"></span> Registrar SoundExchange (Featured Artist + Rights Owner)</div>
+      <div class="cl-item"><span class="box"></span> Completar W-8BEN para evitar retención 30% IRS</div>
+      <div class="cl-item"><span class="box"></span> Reclamar canciones vía Search & Claim</div>
+      <div class="cl-item"><span class="box"></span> Subir catálogo a DistroKid (generar ISRCs)</div>
+      <div class="cl-item"><span class="box"></span> Activar Content ID (política: Monetize)</div>
+      <div class="cl-item"><span class="box"></span> Enviar Mensajes 1-4 a Believe / The Orchard</div>
+      <div class="cl-item"><span class="box"></span> Negociar y firmar adelanto ($500K-$1M)</div>
+    </div>
+  </div>
+
+  <div class="phase-box">
+    <h3>🔴 FASE 6-8: Tokenización + Evento + Escala</h3>
+    <div class="cl">
+      <div class="cl-item"><span class="box"></span> Constituir LLC en Wyoming + Obtener EIN</div>
+      <div class="cl-item"><span class="box"></span> Firmar Assignment of Rights</div>
+      <div class="cl-item"><span class="box"></span> Desplegar 6 Smart Contracts</div>
+      <div class="cl-item"><span class="box"></span> Contactar TuBoleta para alianza estratégica</div>
+      <div class="cl-item"><span class="box"></span> Activar preventa paquetes hospitalidad + streaming</div>
+      <div class="cl-item"><span class="box"></span> Generar smartlinks para 40+ artistas afiliados</div>
+      <div class="cl-item"><span class="box"></span> Lanzar campaña de marketing (playlists, blinks, UGC)</div>
+      <div class="cl-item"><span class="box"></span> 🎯 <strong>23 DE SEPTIEMBRE — EVENTO 50 ANIVERSARIO</strong></div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:30px;padding-top:20px;border-top:2px solid #1a1a2e">
+    <div style="font-size:14px;font-weight:700;letter-spacing:2px;color:#1a1a2e">☢️ NUCLEAR AIMA</div>
+    <div style="font-size:10px;color:#888;margin-top:4px">Romny A. Regalado Maria · 2026</div>
+  </div>
+</div>
+
+</body>
+</html>

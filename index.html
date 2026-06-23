@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⭐ Paso a Paso Estrella — Ramón Orlando</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a12;--bg2:#0f0f1a;--grn:#00ff88;--cy:#00e5ff;--gold:#f59e0b;--text:#e0e0e0;--dim:#666680;--card:#14141f;--border:rgba(255,255,255,0.06);--red:#ff3366;--purple:#b388ff;--orange:#ff8c42}
+body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column;align-items:center}
+.container{max-width:1100px;width:100%;padding:24px 28px 60px}
+
+/* ===== HERO ===== */
+.hero{text-align:center;padding:50px 20px 30px;border-bottom:1px solid var(--border);margin-bottom:32px}
+.hero .badge{display:inline-block;background:rgba(0,255,136,0.08);border:1px solid rgba(0,255,136,0.15);color:var(--grn);padding:4px 14px;font-size:10px;letter-spacing:2px;text-transform:uppercase;border-radius:3px;margin-bottom:16px}
+.hero h1{font-size:clamp(28px,5vw,48px);font-weight:800;letter-spacing:-0.5px;background:linear-gradient(135deg,var(--grn),var(--cy));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;line-height:1.1}
+.hero h1 .icon{font-size:clamp(24px,4vw,40px);-webkit-text-fill-color:initial}
+.hero .subtitle{font-size:14px;color:var(--dim);letter-spacing:1px;max-width:600px;margin:0 auto;line-height:1.6}
+.hero .subtitle span{color:var(--gold)}
+
+/* ===== STATS ROW ===== */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:28px}
+.stat-card{text-align:center;padding:16px 10px;background:var(--card);border:1px solid var(--border);border-radius:6px;transition:all 0.3s}
+.stat-card:hover{border-color:rgba(0,255,136,0.15);transform:translateY(-2px)}
+.stat-card .num{font-size:22px;font-weight:800;color:var(--grn);letter-spacing:0.5px}
+.stat-card .lbl{font-size:8px;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-top:3px}
+
+/* ===== NAV PILLS ===== */
+.nav-pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:28px;justify-content:center}
+.pill{display:flex;align-items:center;gap:6px;padding:8px 14px;background:var(--card);border:1px solid var(--border);border-radius:20px;cursor:pointer;transition:all 0.25s;font-size:11px;color:var(--dim);text-decoration:none}
+.pill:hover{background:rgba(0,255,136,0.04);border-color:rgba(0,255,136,0.15);color:var(--text);transform:translateY(-1px)}
+.pill.active{background:rgba(0,255,136,0.06);border-color:var(--grn);color:var(--grn)}
+.pill .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.pill .tag{font-size:7px;padding:1px 5px;border-radius:2px;text-transform:uppercase;letter-spacing:1px}
+
+/* ===== FUNNEL ===== */
+.funnel{position:relative;padding:0;margin-bottom:32px}
+.funnel::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--grn),var(--cy),transparent)}
+.funnel-step{position:relative;padding:0 0 0 52px;margin-bottom:20px;cursor:pointer}
+.funnel-step:last-child{margin-bottom:0}
+.funnel-step .step-marker{position:absolute;left:12px;top:0;width:16px;height:16px;border-radius:50%;border:2px solid var(--grn);background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;color:var(--grn);z-index:2;transition:all 0.3s}
+.funnel-step.active .step-marker{background:var(--grn);color:var(--bg);box-shadow:0 0 12px rgba(0,255,136,0.3)}
+.funnel-step.completed .step-marker{background:var(--gold);border-color:var(--gold);color:var(--bg)}
+.funnel-step .step-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px 20px;transition:all 0.3s;overflow:hidden}
+.funnel-step .step-card:hover{border-color:rgba(0,255,136,0.12);transform:translateX(2px)}
+.funnel-step.active .step-card{border-color:rgba(0,255,136,0.2);background:rgba(0,255,136,0.02)}
+.step-header{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.step-header .step-title{font-size:13px;font-weight:600;color:var(--text);letter-spacing:0.3px}
+.step-header .step-title .num{color:var(--grn);margin-right:6px}
+.step-header .step-sub{font-size:9px;color:var(--dim);margin-top:2px}
+.step-header .step-cost{font-size:9px;color:var(--gold);letter-spacing:0.5px;white-space:nowrap}
+.step-header .step-toggle{color:var(--dim);font-size:10px;transition:transform 0.3s;flex-shrink:0}
+.funnel-step.active .step-toggle{transform:rotate(180deg);color:var(--grn)}
+.step-body{display:none;padding:14px 0 0;border-top:1px solid var(--border);margin-top:12px}
+.funnel-step.active .step-body{display:block;animation:fadeIn 0.3s ease}
+
+/* ===== CARDS ===== */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-bottom:16px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:16px;transition:all 0.3s}
+.card:hover{border-color:rgba(0,255,136,0.1);transform:translateY(-1px)}
+.card-icon{font-size:20px;margin-bottom:6px}
+.card-title{font-size:10px;color:var(--grn);text-transform:uppercase;letter-spacing:2px;margin-bottom:6px}
+.text{font-size:12px;line-height:1.7;color:rgba(224,224,224,0.85)}
+.text-muted{font-size:11px;color:var(--dim);line-height:1.6}
+
+/* ===== TABLES ===== */
+table{width:100%;border-collapse:collapse;margin:8px 0;font-size:11px}
+th{background:rgba(0,255,136,0.04);color:var(--grn);padding:6px 8px;border:1px solid var(--border);text-align:left;font-size:10px;letter-spacing:1px;text-transform:uppercase}
+td{padding:6px 8px;border:1px solid var(--border);color:var(--text)}
+tr:nth-child(even){background:rgba(0,0,0,0.15)}
+
+/* ===== HIGHLIGHTS ===== */
+.highlight{padding:10px 14px;background:rgba(0,255,136,0.03);border-left:2px solid var(--grn);border-radius:0 4px 4px 0;font-size:11px;line-height:1.7;margin:8px 0;color:var(--text)}
+.highlight.gold{border-left-color:var(--gold);background:rgba(245,158,11,0.03)}
+.highlight.cy{border-left-color:var(--cy);background:rgba(0,229,255,0.03)}
+.highlight.red{border-left-color:var(--red);background:rgba(255,51,102,0.03)}
+.highlight.purple{border-left-color:var(--purple);background:rgba(179,136,255,0.03)}
+
+/* ===== DATA ROW ===== */
+.data-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.03);font-size:11px;gap:10px}
+.data-row:last-child{border-bottom:none}
+.data-row .label{color:var(--dim);flex-shrink:0}
+.data-row .value{color:var(--text);text-align:right}
+.data-row .value.grn{color:var(--grn)}
+.data-row .value.gold{color:var(--gold)}
+
+/* ===== SECTIONS ===== */
+.section{animation:fadeIn 0.4s ease}
+.section-title{font-size:clamp(16px,2.5vw,22px);font-weight:700;letter-spacing:1px;color:var(--text);margin-bottom:4px}
+.section-title .accent{color:var(--grn)}
+.section-sub{font-size:10px;color:var(--dim);letter-spacing:1px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+
+/* ===== PROGRESS BAR ===== */
+.progress{height:4px;background:rgba(0,255,136,0.06);margin:8px 0;border-radius:2px;overflow:hidden}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--grn),var(--cy));transition:width 1s ease;border-radius:2px}
+
+/* ===== MESSAGE BLOCKS ===== */
+.message-block{background:rgba(0,0,0,0.15);border:1px solid var(--border);border-radius:4px;padding:12px 14px;margin:8px 0;font-size:11px;line-height:1.7}
+.message-block .msg-label{font-size:8px;text-transform:uppercase;letter-spacing:2px;color:var(--cy);margin-bottom:4px}
+.message-block .msg-subject{font-size:11px;color:var(--gold);margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.message-block p{margin-bottom:6px}
+
+/* ===== TIMELINE ===== */
+.timeline{position:relative;padding-left:20px;margin:10px 0}
+.timeline::before{content:'';position:absolute;left:7px;top:0;bottom:0;width:1px;background:var(--border)}
+.timeline-item{position:relative;padding:0 0 14px 14px}
+.timeline-item::before{content:'';position:absolute;left:-18px;top:4px;width:8px;height:8px;border-radius:50%;border:1px solid var(--grn);background:var(--bg)}
+.timeline-item.active::before{background:var(--grn);box-shadow:0 0 8px rgba(0,255,136,0.3)}
+.timeline-item .date{font-size:8px;color:var(--dim);letter-spacing:1px;text-transform:uppercase}
+.timeline-item .title{font-size:11px;color:var(--text);margin:2px 0}
+.timeline-item .desc{font-size:10px;color:var(--dim);line-height:1.5}
+
+/* ===== CHECKLIST ===== */
+.checklist-item{display:flex;gap:8px;padding:4px 0;font-size:10px;line-height:1.8;color:rgba(224,224,224,0.8)}
+.checklist-item .box{width:12px;height:12px;border:1px solid var(--dim);border-radius:2px;flex-shrink:0;margin-top:4px}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes glow{0%,100%{text-shadow:0 0 6px rgba(0,255,136,0.2)}50%{text-shadow:0 0 12px rgba(0,255,136,0.4)}}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:600px){
+  .container{padding:16px}
+  .hero{padding:30px 10px 20px}
+  .funnel-step{padding-left:36px}
+  .funnel-step .step-marker{left:6px;width:12px;height:12px;font-size:6px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .step-header{flex-wrap:wrap}
+  .step-header .step-cost{width:100%;margin-top:4px}
+}
+
+/* ===== DOCS SECTION ===== */
+.docs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:12px 0}
+.doc-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:14px;text-align:center;transition:all 0.3s}
+.doc-card:hover{border-color:rgba(0,255,136,0.15);transform:translateY(-2px)}
+.doc-card .doc-icon{font-size:28px;margin-bottom:6px}
+.doc-card .doc-name{font-size:10px;color:var(--text);letter-spacing:1px;text-transform:uppercase}
+.doc-card .doc-desc{font-size:9px;color:var(--dim);margin-top:4px;line-height:1.5}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-thumb{background:var(--grn);border-radius:2px}
+::-webkit-scrollbar-track{background:transparent}
+
+/* ===== PRINT ===== */
+@media print{
+  body{background:#fff!important;color:#000!important}
+  .funnel-step .step-card,.card{break-inside:avoid;border-color:#ccc!important}
+  .hero h1{background:none!important;-webkit-text-fill-color:#000!important;color:#000!important}
+}
+
+/* ===== BOTTOM NAV ===== */
+.bottom-nav{display:flex;gap:10px;margin-top:30px;padding-top:20px;border-top:1px solid var(--border);flex-wrap:wrap;justify-content:center}
+.bottom-nav a{color:var(--dim);text-decoration:none;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:6px 12px;border:1px solid var(--border);border-radius:4px;transition:all 0.25s}
+.bottom-nav a:hover{color:var(--grn);border-color:rgba(0,255,136,0.2)}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ===== HERO ===== -->
+  <div class="hero">
+    <div class="badge">⚡ Embudo de Acción · AIMA</div>
+    <h1><span class="icon">⭐</span> Paso a Paso Estrella</h1>
+    <div class="subtitle">Plan completo de 8 fases para que <span>Ramón Orlando</span> recupere su catálogo, consiga adelanto con multinacional, tokenice su obra y ejecute el evento del 50 Aniversario.</div>
+  </div>
+
+  <!-- ===== KEY STATS ===== -->
+  <div class="stats">
+    <div class="stat-card"><div class="num">8</div><div class="lbl">Fases del Plan</div></div>
+    <div class="stat-card"><div class="num">178</div><div class="lbl">Canciones</div></div>
+    <div class="stat-card"><div class="num">17</div><div class="lbl">Álbumes</div></div>
+    <div class="stat-card"><div class="num">288.8M</div><div class="lbl">Vistas Auditadas</div></div>
+    <div class="stat-card"><div class="num">$758.9K</div><div class="lbl">Valor No Cobrado</div></div>
+    <div class="stat-card"><div class="num">74+</div><div class="lbl">Nodos YouTube</div></div>
+    <div class="stat-card"><div class="num">$2.63</div><div class="lbl">eCPM Real</div></div>
+    <div class="stat-card"><div class="num">$500K-1M</div><div class="lbl">Adelanto Objetivo</div></div>
+  </div>
+
+  <!-- ===== NAV PILLS ===== -->
+  <div class="nav-pills">
+    <a class="pill active" href="#fase1"><span class="dot" style="background:var(--grn)"></span>Fase 1<span class="tag" style="color:var(--grn);border:1px solid rgba(0,255,136,0.15)">legal</span></a>
+    <a class="pill" href="#fase2"><span class="dot" style="background:var(--cy)"></span>Fase 2<span class="tag" style="color:var(--cy);border:1px solid rgba(0,229,255,0.15)">auditoría</span></a>
+    <a class="pill" href="#fase3"><span class="dot" style="background:var(--gold)"></span>Fase 3<span class="tag" style="color:var(--gold);border:1px solid rgba(245,158,11,0.15)">artista</span></a>
+    <a class="pill" href="#fase4"><span class="dot" style="background:var(--purple)"></span>Fase 4<span class="tag" style="color:var(--purple);border:1px solid rgba(179,136,255,0.15)">cobro</span></a>
+    <a class="pill" href="#fase5"><span class="dot" style="background:var(--orange)"></span>Fase 5<span class="tag" style="color:var(--orange);border:1px solid rgba(255,140,66,0.15)">distribución</span></a>
+    <a class="pill" href="#fase6"><span class="dot" style="background:var(--cy)"></span>Fase 6<span class="tag" style="color:var(--cy);border:1px solid rgba(0,229,255,0.15)">web3</span></a>
+    <a class="pill" href="#fase7"><span class="dot" style="background:var(--red)"></span>Fase 7<span class="tag" style="color:var(--red);border:1px solid rgba(255,51,102,0.15)">evento</span></a>
+    <a class="pill" href="#fase8"><span class="dot" style="background:var(--gold)"></span>Fase 8<span class="tag" style="color:var(--gold);border:1px solid rgba(245,158,11,0.15)">escala</span></a>
+  </div>
+
+  <!-- ===== FUNNEL STEPS ===== -->
+  <div class="funnel">
+
+    <!-- FASE 1 -->
+    <div class="funnel-step active" id="fase1">
+      <div class="step-marker">1</div>
+      <div class="step-card">
+        <div class="step-header" onclick="this.closest('.funnel-step').classList.toggle('active')">
+          <div>
+            <div class="step-title"><span class="num">01</span>Fundación Legal Local</div>
+            <div class="step-sub">ONAPI → SRL → ONDA → Contrato Matriz</div>
+          </div>
+          <div class="step-cost">~$1,000 USD</div>
+          <div class="step-toggle">▼</div>
+        </div>
+        <div class="step-body">
+          <h4 style="font-size:11px;color:var(--cy);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px">¿POR QUÉ ES LA FASE MÁS IMPORTANTE?</h4>
+          <p class="text">Sin la estructura legal correcta, no puedes firmar contratos con distribuidoras, no puedes abrir cuentas bancarias corporativas, no puedes reclamar derechos ante YouTube ni ASCAP. Esta fase convierte una idea en una empresa real con poder legal ante el Estado dominicano y las multinacionales.</p>
+
+          <div style="margin:12px 0;text-align:center;font-size:11px;line-height:2.2;font-family:monospace">
+            <span style="color:var(--grn)">ONAPI</span> <span style="color:var(--dim)">→</span> <span style="color:var(--cy)">CÁMARA DE COMERCIO</span> <span style="color:var(--dim)">→</span> <span style="color:var(--gold)">DGII (RNC)</span> <span style="color:var(--dim)">→</span> <span style="color:var(--grn)">CTA BANCARIA</span> <span style="color:var(--dim)">→</span> <span style="color:var(--cy)">ONDA</span> <span style="color:var(--dim)">→</span> <span style="color:var(--gold)">CONTRATO</span>
+          </div>
+          <div style="font-size:9px;text-align:center;color:var(--dim);margin-bottom:10px">⬆ El orden es irrompible — cada paso depende del anterior ⬆</div>
+
+          <table>
+            <tr><th style="width:30%">Institución</th><th>Qué registra</th><th>Costo</th><th>Tiempo</th></tr>
+            <tr><td>ONAPI</td><td>Nombre Comercial (Clase 41+35)</td><td style="color:var(--gold)">RD$4,755</td><td>5-10 días</td></tr>
+            <tr><td>Cámara de Comercio</td><td>SRL + Registro Mercantil</td><td style="color:var(--gold)">RD$24K-30K</td><td>15-20 días</td></tr>
+            <tr><td>ONDA</td><td>Productor Fonográfico (Obra Colectiva)</td><td style="color:var(--gold)">RD$8K-10K</td><td>10-15 días</td></tr>
+            <tr><td>Abogado</td><td>Contrato Matriz de Administración</td><td style="color:var(--gold)">RD$15K-18K</td><td>3-5 días</td></tr>
+          </table>
+
+          <div class="highlight">💡 <strong>Tip clave — Ahorro masivo:</strong> Pregunta por el registro de <strong>Obra Colectiva</strong> en la ONDA. Las 178 canciones como compilación cuestan < RD$10,000. Si las registras una por una son > RD$300,000.</div>
+
+          <div class="highlight gold">💰 <strong>INVERSIÓN TOTAL FASE 1:</strong> ~$1,000 USD (RD$55,000) · ~30 DÍAS · Esta inversión desbloquea TODO lo demás.</div>
+
+          <div style="background:rgba(0,0,0,0.15);border:1px solid var(--border);border-radius:4px;padding:10px;margin-top:10px">
+            <div style="font-size:8px;letter-spacing:2px;color:var(--cy);text-transform:uppercase;margin-bottom:6px">📋 CHECKLIST — FASE 1</div>
+            <div class="checklist-item"><span class="box"></span>Buscar disponibilidad del nombre en ONAPI</div>
+            <div class="checklist-item"><span class="box"></span>Pagar tasa ONAPI (RD$4,755) y obtener certificado</div>
+            <div class="checklist-item"><span class="box"></span>Redactar estatutos SRL con objeto social correcto</div>
+            <div class="checklist-item"><span class="box"></span>Pagar impuesto constitución DGII (1% capital)</div>
+            <div class="checklist-item"><span class="box"></span>Depositar expediente en Cámara de Comercio</div>
+            <div class="checklist-item"><span class="box"></span>Recibir Registro Mercantil</div>
+            <div class="checklist-item"><span class="box"></span>Solicitar RNC en DGII</div>
+            <div class="checklist-item"><span class="box"></span>Abrir cuenta bancaria corporativa</div>
+            <div class="checklist-item"><span class="box"></span>Registrar SRL como Productor Fonográfico en ONDA</div>
+            <div class="checklist-item"><span class="box"></span>Redactar y firmar Contrato Matriz con abogado</div>
+            <div class="checklist-item" style="color:var(--grn);font-weight:600"><span class="box" style="border-color:var(--grn);background:var(--grn)"></span>FASE 1 COMPLETADA</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FASE 2 -->
+    <div class="funnel-step" id="fase2">
+      <div class="step-marker">2</div>
+      <div class="step-card">
+        <div class="step-header" onclick="this.closest('.funnel-step').classList.toggle('active')">
+          <div>
+            <div class="step-title"><span class="num">02</span>Auditoría del Catálogo</div>
+            <div class="step-sub">Herramienta de rastreo · Yield analysis · Reporte ejecutivo</div>
+          </div>
+          <div class="step-cost">$0 (tu herramienta)</div>
+          <div class="step-toggle">▼</div>
+        </div>
+        <div class="step-body">
+          <p class="text">Busca en YouTube Data API cada título del catálogo, identifica nodos, suma vistas, calcula yield estimado y genera un reporte PDF ejecutivo listo para presentar a multinacionales.</p>
+
+          <div class="grid" style="margin:10px 0">
+            <div style="background:rgba(0,0,0,0.12);border:1px solid var(--border);border-radius:4px;padding:12px;text-align:center">
+              <div style="font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:1px">Te Compro Tu Novia</div>
+              <div style="font-size:18px;font-weight:700;color:var(--grn);margin:4px 0">$194,913</div>
+              <div style="font-size:8px;color:var(--dim)">Valor estimado en YouTube</div>
+            </div>
+            <div style="background:rgba(0,0,0,0.12);border:1px solid var(--border);border-radius:4px;padding:12px;text-align:center">
+              <div style="font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:1px">12 canciones principales</div>
+              <div style="font-size:18px;font-weight:700;color:var(--gold);margin:4px 0">$717,441</div>
+              <div style="font-size:8px;color:var(--dim)">Valor total auditado</div>
+            </div>
+            <div style="background:rgba(0,0,0,0.12);border:1px solid var(--border);border-radius:4px;padding:12px;text-align:center">
+              <div style="font-size:9px;color:var(--dim);text-transform:uppercase;letter-spacing:1px">Catálogo completo (178)</div>
+              <div style="font-size:18px;font-weight:700;color:var(--gold);margin:4px 0">$1.14M-1.68M</div>
+              <div style="font-size:8px;color:var(--dim)">Proyección anual</div>
+            </div>
+          </div>
+
+          <div class="highlight gold">📊 <strong>Número clave para el pitch:</strong> No es el total de vistas — es el <strong>ingreso mensual fugado</strong>. Eso es lo que justifica el adelanto ante Believe/The Orchard.</div>
+
+          <div style="background:rgba(0,0,0,0.15);border:1px solid var(--border);border-radius:4px;padding:10px;margin-top:10px">
+            <div style="font-size:8px;letter-spacing:2px;color:var(--cy);text-transform:uppercase;margin-bottom:6px">📋 CHECKLIST — FASE 2</div>
+            <div class="checklist-item"><span class="box"></span>Obtener lista oficial de 178 canciones</div>
+            <div class="checklist-item"><span class="box"></span>Correr auditoría de las 12 canciones principales</div>
+            <div class="checklist-item"><span class="box"></span>Filtrar nodos sin huella sonora verificable</div>
+            <div class="checklist-item"><span class="box"></span>Calcular yields por nodo y total por canción</div>
+            <div class="checklist-item"><span class="box"></span>Generar reporte PDF ejecutivo</div>
+            <div class="checklist-item"><span class="box"></span>Preparar expediente con 6 catálogos temáticos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FASE 3 -->
+    <div class="funnel-step" id="fase3">
+      <div class="step-marker">3</div>
+      <div class="step-card">
+        <div class="step-header" onclick="this.closest('.funnel-step').classList.toggle('active')">
+          <div>
+            <div class="step-title"><span class="num">03</span>Relación con el Artista</div>
+            <div class="step-sub">Contacto · Presentación gradual · Carta autorización notariada</div>
+          </div>
+          <div class="step-cost">RD$3,000-10,000</div>
+          <div class="step-toggle">▼</div>
+        </div>
+        <div class="step-body">
+          <p class="text">No le des toda la información a Ramón Orlando de golpe. Comparte por fases según avance el proceso. Esto protege tu método y evita abrumarlo con tecnicismos.</p>
+
+          <div style="border-left:2px solid var(--gold);padding:10px 14px;background:rgba(245,158,11,0.03);border-radius:0 4px 4px 0;margin:10px 0">
+            <div style="font-size:9px;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px">🗣️ Mensaje inicial a Ramón Orlando</div>
+            <p style="font-size:11px;margin:0;line-height:1.7;font-style:italic;color:rgba(224,224,224,0.85)">"Maestro, he estado trabajando estos días analizando su música en internet. Su catálogo tiene millones de reproducciones activas ahora mismo y usted no está cobrando nada de eso. Hay empresas internacionales que pagan adelantos importantes por catálogos como el suyo. Ya tengo los contactos. Para avanzar, necesito que haga una sola cosa esta semana."</p>
+          </div>
+
+          <table>
+            <tr><th style="width:30%">Acción</th><th>Qué debes hacer TÚ</th><th>Qué hace RAMÓN</th></tr>
+            <tr><td>ONAPI</td><td>Preparas solicitud, pagas tasa</td><td>Firma si requiere cédula</td></tr>
+            <tr><td>SRL</td><td>Redactas estatutos, gestionas registro</td><td>Provee datos como socio</td></tr>
+            <tr><td>ONDA</td><td>Acompañas a la oficina, preparas lista</td><td style="color:var(--gold)">✅ Va personalmente con su cédula</td></tr>
+            <tr><td>Auditoría</td><td style="color:var(--grn)">✅ Corre tu herramienta</td><td>Solo recibe resultados</td></tr>
+            <tr><td>Carta Autorización</td><td>Redactas documento, preparas notario</td><td style="color:var(--gold)">✅ Firma ante notario</td></tr>
+            <tr><td>SoundExchange</td><td style="color:var(--grn)">✅ Completas registro online</td><td>Firma W-8BEN si requerido</td></tr>
+            <tr><td>DistroKid</td><td style="color:var(--grn)">✅ Subes catálogo, activas ISRCs</td><td>Provee lista oficial</td></tr>
+            <tr><td>Believe/The Orchard</td><td style="color:var(--grn)">✅ Negocias adelanto</td><td style="color:var(--gold)">✅ Firma contrato final</td></tr>
+          </table>
+
+          <div class="highlight gold">💡 <strong>Regla de oro:</strong> Si pregunta cuánto dinero, dile: "Los números exactos los tendré cuando complete el registro de la ONDA. El rango que estoy manejando es significativo."</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FASE 4 -->
+    <div class="funnel-step" id="fase4">
+      <div class="step-marker">4</div>
+      <div class="step-card">
+        <div class="step-header" onclick="this.closest('.funnel-step').classList.toggle('active')">
+          <div>
+            <div class="step-title"><span class="num">04</span>Registro en Plataformas de Cobro</div>
+            <div class="step-sub">SoundExchange · ASCAP/BMI · SGACEDOM</div>
+          </div>
+          <div class="step-cost">$0 (gratuito)</div>
+          <div class="step-toggle">▼</div>
+        </div>
+        <div class="step-body">
+          <p class="text">SoundExchange recauda las regalías por ejecución pública digital en EE.UU. Para Ramón Orlando, <strong>esto puede liberar $40,000-$80,000 USD retenidos de hasta 3 años atrás.</strong></p>
+
+          <div class="grid" style="margin:10px 0">
+            <div style="background:rgba(0,0,0,0.12);border:1px solid var(--border);border-radius:4px;padding:12px">
+              <div style="font-size:9px;color:var(--cy);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">📌 SoundExchange</div>
+              <div class="data-row"><span class="label">Registro</span><span class="value grn">GRATUITO</span></div>
+              <div class="data-row"><span class="label">Retroactivo</span><span class="value gold">3 AÑOS</span></div>
+              <div class="data-row"><span class="label">Est. retenido RO</span><span class="value gold">$40K-$80K</span></div>
+              <div class="data-row"><span class="label">Formulario</span><span class="value">W-8BEN (obligatorio)</span></div>
+            </div>
+            <div style="background:rgba(0,0,0,0.12);border:1px solid var(--border);border-radius:4px;padding:12px">
+              <div style="font-size:9px;color:var(--cy);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">📌 SGACEDOM (RD)</div>
+              <div class="data-row"><span class="label">Registro</span><span class="value grn">GRATUITO</span></div>
+              <div class="data-row"><span class="label">Cubre</span><span class="value">Radio, TV, público</span></div>
+              <div class="data-row"><span class="label">Portal</span><span class="value cy">sgacedom.org.do</span></div>
+              <div class="data-row"><span class="label">ASCAP/BMI</span><span class="value">Vía reciprocidad</span></div>
+            </div>
+          </div>
+
+          <div class="highlight">📌 <strong>Regla del 45/50:</strong> SoundExchange divide: 45% Artista Principal · 50% Dueño del Máster · 5% Músicos. Si Ramón Orlando es ambas cosas, reclama los dos roles.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FASE 5 -->
+    <div class="funnel-step" id="fase5">
+      <div class="step-marker">5</div>
+      <div class="step-card">
+        <div class="step-header" onclick="this.closest('.funnel-step').classList.toggle('active')">
+          <div>
+            <div class="step-title"><span class="num">05</span>Distribución y Content ID</div>
+            <div class="step-sub">DistroKid (ISRCs) → Believe / The Orchard (Adelanto $500K-$1M)</div>
+          </div>
+          <div class="step-cost">~$22/mes</div>
+          <div class="step-toggle">▼</div>
+        </div>
+        <div class="step-body">
+          <p class="text">No puedes llegar directo a Believe/The Orchard sin ISRCs y sin historial. La solución es una estrategia de dos fases que no compite consigo misma.</p>
+
+          <div style="margin:12px 0;text-align:center;font-size:10px;line-height:2;font-family:monospace">
+            <span style="color:var(--grn)">DISTROKID</span> <span style="color:var(--dim)">→ ISRCs → Content ID</span><br>
+            <span style="color:var(--dim)">       │</span><br>
+            <span style="color:var(--dim)">       ▼</span><br>
+            <span style="color:var(--cy)">BELIEVE / THE ORCHARD</span> <span style="color:var(--dim)">→ Adelanto → Distribución global</span><br>
+            <span style="color:var(--dim)">       ├── </span><span style="color:var(--grn)">$500K-$1M</span> <span style="color:var(--dim)">Adelanto (MG)</span><br>
+            <span style="color:var(--dim)">       └── </span><span style="color:var(--gold)">Content ID Premium</span> <span style="color:var(--dim)">(más peso legal que DistroKid)</span>
+          </div>
+
+          <div class="grid" style="margin:10px 0">
+            <div style="background:rgba(0,0,0,0.12);border:1px solid var(--border);border-radius:4px;padding:12px">
+              <div style="font-size:9px;color:var(--grn);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">🟢 FASE A: DistroKid</div>
+              <div class="text-muted">Objetivo: Generar ISRCs + Content ID rápido<br>Plan: Anual ~$22/mes, SIN exclusividad<br>Política: Monetize, NO Block</div>
+            </div>
+            <div style="background:rgba(0,0,0,0.12);border:1px solid var(--border);border-radius:4px;padding:12px">
+              <div style="font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">🟡 FASE B: Believe / The Orchard</div>
+              <div class="text-muted">Cuando confirmen el adelanto, migras catálogo.<br>Content ID Premium con más peso legal.<br>Migración toma 7-30 días.</div>
+            </div>
+          </div>
+
+          <div class="highlight red">⚠️ <strong>No uses FUGA ni Deliver My Tune</strong> si vas a cerrar con Believe/The Orchard. Son competidoras y complican la migración.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FASE 6 -->
+    <div class="funnel-step" id="fase6">
+      <div class="step-marker">6</div>
+      <div class="step-card">
+        <div class="step-header" onclick="this.closest('.funnel-step').classList.toggle('active')">
+          <div>
+            <div class="step-title"><span class="num">06</span>LLC Wyoming + Tokenización</div>
+            <div class="step-sub">Assignment of Rights · 6 Smart Contracts · Base/Polygon</div>
+          </div>
+          <div class="step-cost">~$100-600 USD</div>
+          <div class="step-toggle">▼</div>
+        </div>
+        <div class="step-body">
+          <p class="text">Wyoming es el estado más amigable del mundo para DAOs y activos digitales. La LLC se constituye completamente en línea.</p>
+
+          <table style="font-size:10px">
+            <tr><th>Token</th><th>Catálogo</th><th>Canciones</th><th>Función</th></tr>
+            <tr><td>RO-01</td><td>Clásicos del Merengue 1975-1990</td><td>~30</td><td>Ancla principal</td></tr>
+            <tr><td>RO-02</td><td>La Década de Oro 1990-2000</td><td>~35</td><td>Reconocimiento internacional</td></tr>
+            <tr><td>RO-03</td><td>Baladas y Sentimiento</td><td>~28</td><td>Sincronización cine/TV</td></tr>
+            <tr><td>RO-04</td><td>Colaboraciones y Duetos</td><td>~25</td><td>Multiplicador algorítmico</td></tr>
+            <tr><td>RO-05</td><td>Antología Espiritual</td><td>~20</td><td>Mercado de bienestar</td></tr>
+            <tr><td>RO-06</td><td>50 Aniversario Remasterizado</td><td>~20</td><td>Evento 23S — mayor tráfico</td></tr>
+          </table>
+
+          <div class="highlight gold">💡 <strong>UX sin fricción:</strong> El usuario final paga con Apple Pay o tarjeta. Por detrás, la plataforma emite el token automáticamente.</div>
+
+          <div class="highlight red">⚠️ <strong>Form 5472:</strong> Si la LLC es de un solo dueño extranjero, debes presentar Form 5472 + pro-forma 1120 anualmente. <strong>Multa: $25,000.</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FASE 7 -->
+    <div class="funnel-step" id="fase7">
+      <div class="step-marker">7</div>
+      <div class="step-card">
+        <div class="step-header" onclick="this.closest('.funnel-step').classList.toggle('active')">
+          <div>
+            <div class="step-title"><span class="num">07</span>Evento 50 Aniversario — 23 de Septiembre</div>
+            <div class="step-sub">Estadio Olímpico · TuBoleta Pass · Hospitalidad diáspora · Streaming</div>
+          </div>
+          <div class="step-cost">$273K+ potencial</div>
+          <div class="step-toggle">▼</div>
+        </div>
+        <div class="step-body">
+          <p class="text">TuBoleta RD ya tiene blockchain nativo (TuBoleta Pass). Alianza directa: ellos emiten Special Guest A como boleta NFT, tu plataforma es canal de venta internacional.</p>
+
+          <div class="grid" style="margin:10px 0">
+            <div style="background:rgba(0,0,0,0.12);border:1px solid var(--border);border-radius:4px;padding:12px;text-align:center">
+              <div style="font-size:9px;color:var(--dim);text-transform:uppercase">Paquetes Hospitalidad</div>
+              <div style="font-size:16px;font-weight:700;color:var(--grn);margin:4px 0">$23,650</div>
+              <div style="font-size:8px;color:var(--dim)">150 boletas bloque corporativo</div>
+            </div>
+            <div style="background:rgba(0,0,0,0.12);border:1px solid var(--border);border-radius:4px;padding:12px;text-align:center">
+              <div style="font-size:9px;color:var(--dim);text-transform:uppercase">Streaming Privado</div>
+              <div style="font-size:16px;font-weight:700;color:var(--gold);margin:4px 0">$250,000</div>
+              <div style="font-size:8px;color:var(--dim)">10,000 accesos a $25 USD</div>
+            </div>
+            <div style="background:rgba(0,0,0,0.12);border:1px solid var(--border);border-radius:4px;padding:12px;text-align:center">
+              <div style="font-size:9px;color:var(--dim);text-transform:uppercase">Red Afiliados</div>
+              <div style="font-size:16px;font-weight:700;color:var(--cy);margin:4px 0">40+</div>
+              <div style="font-size:8px;color:var(--dim)">Artistas con smartlinks</div>
+            </div>
+          </div>
+
+          <div class="highlight">💡 <strong>Propuesta:</strong> Te acercas a TuBoleta como socio tecnológico. El 50 Aniversario es el caso de uso premium de TuBoleta Pass. Tú controlas la experiencia de hospitalidad, datos de clientes internacionales y vinculación con el catálogo tokenizado.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FASE 8 -->
+    <div class="funnel-step" id="fase8">
+      <div class="step-marker">8</div>
+      <div class="step-card">
+        <div class="step-header" onclick="this.closest('.funnel-step').classList.toggle('active')">
+          <div>
+            <div class="step-title"><span class="num">08</span>Gestión de Regalías y Escalabilidad</div>
+            <div class="step-sub">Replicación del modelo · Smartlinks · Playlist strategy · ROI</div>
+          </div>
+          <div class="step-cost">Escala exponencial</div>
+          <div class="step-toggle">▼</div>
+        </div>
+        <div class="step-body">
+          <p class="text">Una vez que el catálogo de Ramón Orlando está funcionando como caso de éxito, el modelo se replica con otros artistas. El costo marginal de incorporar el catálogo #2 o #10 es casi cero.</p>
+
+          <div style="background:rgba(0,0,0,0.12);border:1px solid var(--border);border-radius:4px;padding:12px;margin:10px 0">
+            <div style="font-size:9px;color:var(--cy);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">📊 FUENTES DE INGRESO CONSOLIDADAS</div>
+            <div class="data-row"><span class="label">1. Fee admin catálogo</span><span class="value gold">25-30% mensual</span></div>
+            <div class="data-row"><span class="label">2. Content ID YouTube</span><span class="value gold">$2,000-$5,000/mes</span></div>
+            <div class="data-row"><span class="label">3. Streaming Spotify/Apple</span><span class="value gold">$1,000-$3,000/mes</span></div>
+            <div class="data-row"><span class="label">4. Retroactivo SoundExchange</span><span class="value gold">$40K-$80K (una vez)</span></div>
+            <div class="data-row"><span class="label">5. Mercado secundario tokens</span><span class="value gold">$500-$2,000/mes</span></div>
+            <div class="data-row"><span class="label">6. Comisiones hospitalidad</span><span class="value gold">$23K-$250K (evento)</span></div>
+          </div>
+
+          <div class="highlight gold">🚀 <strong>Modelo de negocio:</strong> Cada artista nuevo = flujo de caja recurrente con costo marginal casi cero. Escala exponencial. La SRL ya existe, la LLC ya existe, la plataforma ya existe, los contactos ya existen.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SECCIÓN: DATOS DE AUDITORÍA ===== -->
+  <div class="section">
+    <div class="section-title">📊 <span class="accent">Datos</span> de Auditoría</div>
+    <div class="section-sub">12 canciones principales auditadas con YouTube Data API · eCPM real: $2.63</div>
+
+    <div class="highlight red">⚠️ <strong>Hallazgo crítico:</strong> El 100% de estos ingresos está actualmente <strong>no cobrado</strong>. No hay reclamos de Content ID activos, no hay registros en SoundExchange, no hay distribución digital formal.</div>
+
+    <table>
+      <tr><th>#</th><th>Canción</th><th>Nodos</th><th>Vistas Totales</th><th>Valor Estimado</th><th>Clasificación</th></tr>
+      <tr><td>1</td><td><strong>Te Compro Tu Novia</strong></td><td>3</td><td>56,440,198</td><td style="color:var(--grn);font-weight:700">$194,913</td><td>★ Estrella</td></tr>
+      <tr><td>2</td><td><strong>No Voy a Volver a Llorar</strong></td><td>3</td><td>90,103,521</td><td style="color:var(--grn);font-weight:700">$192,363</td><td>★ Estrella</td></tr>
+      <tr><td>3</td><td><strong>Weo!</strong></td><td>2</td><td>39,148,208</td><td style="color:var(--grn);font-weight:700">$135,927</td><td>★ Estrella</td></tr>
+      <tr><td>4</td><td><strong>El Venao</strong></td><td>16</td><td>64,285,827</td><td style="color:var(--gold);font-weight:700">$100,799</td><td>◆ Alto Potencial</td></tr>
+      <tr><td>5</td><td><strong>No Hay Nadie Más</strong></td><td>4</td><td>11,256,587</td><td style="color:var(--gold);font-weight:700">$39,084</td><td>◆ Alto Potencial</td></tr>
+      <tr><td>6</td><td><strong>Un Día Más</strong></td><td>2</td><td>4,365,787</td><td style="color:var(--gold)">$15,158</td><td>◆ Alto Potencial</td></tr>
+      <tr><td>7</td><td><strong>Nupcias</strong></td><td>2</td><td>3,516,456</td><td style="color:var(--gold)">$12,210</td><td>◆ Alto Potencial</td></tr>
+      <tr><td>8</td><td><strong>Bailando</strong></td><td>2</td><td>4,365,787</td><td style="color:var(--cy)">$8,333</td><td>● En Desarrollo</td></tr>
+      <tr><td>9</td><td><strong>El Silencio, Tú y Yo</strong></td><td>2</td><td>2,400,397</td><td style="color:var(--cy)">$8,334</td><td>● En Desarrollo</td></tr>
+      <tr><td>10</td><td><strong>Lo Tengo Todo</strong></td><td>2</td><td>8,110,049</td><td style="color:var(--cy)">$8,110</td><td>● En Desarrollo</td></tr>
+      <tr><td>11</td><td><strong>Ring...Ring</strong></td><td>1</td><td>545,885</td><td>$1,895</td><td>● En Desarrollo</td></tr>
+      <tr><td>12</td><td><strong>Noche Eterna</strong></td><td>1</td><td>1,300,160</td><td>$514</td><td>● En Desarrollo</td></tr>
+      <tr style="background:rgba(0,255,136,0.04);font-weight:700"><td colspan="2"><strong>TOTAL 12 CANCIONES</strong></td><td><strong>40</strong></td><td><strong>285,738,862</strong></td><td style="color:var(--grn)"><strong>$717,441</strong></td><td></td></tr>
+    </table>
+
+    <div class="highlight gold">📈 <strong>Proyección catálogo completo (178 canciones):</strong> $1.14M - $1.68M/año · Adelanto potencial: $500K - $1M</div>
+
+    <div class="highlight">📌 <strong>Distribución:</strong> Las 3 canciones "Estrella" representan el <strong>73% del valor</strong> total auditado ($523K). Estrategia: capturar estas primero para generar flujo de caja inmediato.</div>
+  </div>
+
+  <!-- ===== SECCIÓN: MARCO LEGAL RD ===== -->
+  <div class="section" style="margin-top:28px">
+    <div class="section-title">⚖️ <span class="accent">Marco Legal</span> República Dominicana</div>
+    <div class="section-sub">Guía completa de instituciones y procesos para blindar el catálogo</div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">🏛️</div>
+        <div class="card-title">ONAPI</div>
+        <div class="data-row"><span class="label">Registra</span><span class="value">Nombre Comercial</span></div>
+        <div class="data-row"><span class="label">Costo</span><span class="value gold">RD$4,755</span></div>
+        <div class="data-row"><span class="label">Tiempo</span><span class="value">5-10 días</span></div>
+        <div class="data-row"><span class="label">Portal</span><span class="value" style="color:var(--cy)">onapi.gob.do</span></div>
+      </div>
+      <div class="card">
+        <div class="card-icon">📜</div>
+        <div class="card-title">Cámara de Comercio</div>
+        <div class="data-row"><span class="label">Otorga</span><span class="value">Registro Mercantil</span></div>
+        <div class="data-row"><span class="label">Tipo</span><span class="value">SRL (mín. 2 socios)</span></div>
+        <div class="data-row"><span class="label">Costo</span><span class="value gold">RD$24K-30K</span></div>
+        <div class="data-row"><span class="label">Portal</span><span class="value" style="color:var(--cy)">formalizate.gob.do</span></div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎵</div>
+        <div class="card-title">ONDA</div>
+        <div class="data-row"><span class="label">Registra</span><span class="value">Productor Fonográfico</span></div>
+        <div class="data-row"><span class="label">Dirección</span><span class="value">Av. Pastoriza #317</span></div>
+        <div class="data-row"><span class="label">Costo</span><span class="value gold">RD$8K-10K</span></div>
+        <div class="data-row"><span class="label">Portal</span><span class="value" style="color:var(--cy)">onda.gob.do</span></div>
+      </div>
+      <div class="card">
+        <div class="card-icon">📝</div>
+        <div class="card-title">Contrato Matriz</div>
+        <div class="data-row"><span class="label">Split</span><span class="value">70% / 30%</span></div>
+        <div class="data-row"><span class="label">Duración</span><span class="value">10 años renovables</span></div>
+        <div class="data-row"><span class="label">Costo</span><span class="value gold">RD$15K-18K</span></div>
+        <div class="data-row"><span class="label">Tipo</span><span class="value">Admin. exclusiva</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Flujo Legal Completo</div>
+      <div style="font-size:10px;line-height:2.2;padding:6px 0;color:var(--text)">
+        <span style="color:var(--grn)">ONAPI</span> <span style="color:var(--dim)">→</span>
+        <span style="color:var(--cy)">Cámara de Comercio</span> <span style="color:var(--dim)">→</span>
+        <span style="color:var(--gold)">DGII (RNC)</span> <span style="color:var(--dim)">→</span>
+        <span style="color:var(--grn)">Cuenta Bancaria</span> <span style="color:var(--dim)">→</span>
+        <span style="color:var(--cy)">ONDA</span> <span style="color:var(--dim)">→</span>
+        <span style="color:var(--gold)">Contrato Matriz</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SECCIÓN: 4 MENSAJES MULTINACIONALES ===== -->
+  <div class="section" style="margin-top:28px">
+    <div class="section-title">🏢 <span class="accent">4 Mensajes</span> para Believe / The Orchard</div>
+    <div class="section-sub">Secuencia estratégica con disparadores semanales · Datos actualizados de auditoría</div>
+
+    <div class="stats" style="margin-bottom:16px">
+      <div class="stat-card"><div class="num">288.8M</div><div class="lbl">Vistas Detectadas</div></div>
+      <div class="stat-card"><div class="num">$758.9K</div><div class="lbl">Valor No Cobrado</div></div>
+      <div class="stat-card"><div class="num">74+</div><div class="lbl">Nodos YouTube</div></div>
+      <div class="stat-card"><div class="num">$2.63</div><div class="lbl">eCPM Real</div></div>
+    </div>
+
+    <div class="message-block">
+      <div class="msg-label">📨 Mensaje 1 · Primer contacto · Día 1</div>
+      <div class="msg-subject">Asunto: Oportunidad de distribución — Catálogo histórico de música tropical dominicana (50 años, 178 canciones)</div>
+      <p>Estimado equipo de desarrollo de negocios,</p>
+      <p>Me dirijo a ustedes en representación de uno de los artistas más importantes de la historia de la música tropical del Caribe. Un compositor, pianista e intérprete dominicano con <strong>50 años de trayectoria activa</strong>, 17 álbumes y 178 canciones originales.</p>
+      <p>Una auditoría técnica reciente identificó <strong>74+ nodos activos</strong> en YouTube para solo 12 canciones (7% del catálogo), acumulando <strong>288.8 millones de reproducciones</strong> con un valor estimado de <strong>$758,866 USD</strong> — todo actualmente no cobrado.</p>
+      <p>El artista celebra el <strong>23 de septiembre de 2026</strong> su concierto de 50 Aniversario en el Estadio Olímpico Félix Sánchez con más de 40 artistas invitados.</p>
+      <p>Estamos formalizando la documentación de titularidad esta semana en la ONDA. ¿Podría indicarnos el contacto correcto en su organización?</p>
+    </div>
+
+    <div class="message-block">
+      <div class="msg-label">📨 Mensaje 2 · Resumen ejecutivo · Día 5-7</div>
+      <div class="msg-subject">Asunto: Actualización — Catálogo Ramón Orlando / Titularidad en proceso + Resumen de auditoría</div>
+      <p>Adjuntamos el resumen ejecutivo de la auditoría técnica correspondiente a las <strong>12 canciones de mayor rendimiento</strong>:</p>
+      <div class="highlight" style="font-size:10px;line-height:1.8">
+        📊 <strong>DATOS DE AUDITORÍA</strong><br>
+        • 74+ nodos detectados · 288.8M vistas<br>
+        • $758,866 USD valor estimado no cobrado<br>
+        • eCPM real: $2.63 (2.2x sobre proyección conservadora)<br>
+        • Top 3 canciones = 73% del valor ($523K)<br>
+        • Estas 12 canciones = solo 7% del catálogo total (178)
+      </div>
+      <p>Proyección anual catálogo completo: <strong>$1.14M - $1.68M/año</strong>. ¿Les interesaría recibir el expediente completo?</p>
+    </div>
+
+    <div class="message-block">
+      <div class="msg-label">📨 Mensaje 3 · Propuesta formal · Día 12-15</div>
+      <div class="msg-subject">Asunto: Propuesta formal — Catálogo Ramón Orlando / Solicitud de adelanto $500K-$1M</div>
+      <p>Adjuntamos expediente completo: certificado ONDA, Contrato Matriz 70/30, carta notariada, 178 canciones en 6 catálogos temáticos, auditoría con datos reales de YouTube.</p>
+      <p><strong>Solicitud:</strong> Contrato de distribución exclusiva con adelanto de <strong>$500,000 - $1,000,000 USD</strong>. Recuperación proyectada en 3-4 años basada en eCPM real auditado de $2.63.</p>
+    </div>
+
+    <div class="message-block">
+      <div class="msg-label">📨 Mensaje 4 · Cierre con fecha límite · Día 20-25</div>
+      <div class="msg-subject">Asunto: Catálogo Ramón Orlando — Decisión antes del 23 de septiembre</div>
+      <p>El concierto del 50 Aniversario es en menos de 4 meses (23S, Estadio Olímpico, 40+ artistas). <strong>La distribuidora que entre ahora capturará el pico de tráfico desde el día uno.</strong></p>
+      <p>Estamos en conversación paralela con otra firma del sector. Les pedimos una respuesta esta semana.</p>
+    </div>
+  </div>
+
+  <!-- ===== DOCS ===== -->
+  <div class="section" style="margin-top:28px">
+    <div class="section-title">📁 <span class="accent">Documentos</span> del Proyecto</div>
+    <div class="section-sub">Archivos clave guardados para respaldo y seguridad</div>
+
+    <div class="docs-grid">
+      <div class="doc-card">
+        <div class="doc-icon">📊</div>
+        <div class="doc-name">Reporte Auditoría</div>
+        <div class="doc-desc">PDF 5 páginas · 12 canciones · Datos reales YouTube</div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-icon">📨</div>
+        <div class="doc-name">4 Mensajes</div>
+        <div class="doc-desc">Secuencia Believe/The Orchard con datos actualizados</div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-icon">⭐</div>
+        <div class="doc-name">Paso a Paso Estrella</div>
+        <div class="doc-desc">8 fases · Este documento · Embudo completo</div>
+      </div>
+      <div class="doc-card">
+        <div class="doc-icon">⚖️</div>
+        <div class="doc-name">Marco Legal RD</div>
+        <div class="doc-desc">ONAPI · SRL · ONDA · Contrato Matriz</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <div class="bottom-nav">
+    <a href="docs/REPORTE_AUDITORIA_RO.html" target="_blank">📊 Reporte Auditoría</a>
+    <a href="docs/4_MENSAJES_BELIEVE_ORCHARD.html" target="_blank">📨 4 Mensajes</a>
+    <a href="#fase1">⭐ Fase 1</a>
+    <a href="#fase5">🏢 Fase 5</a>
+    <a href="#fase7">🎫 Fase 7</a>
+  </div>
+
+  <div style="text-align:center;margin-top:24px;font-size:8px;color:var(--dim);letter-spacing:1px;padding-top:16px;border-top:1px solid var(--border)">
+    ☢️ Nuclear AIMA · Paso a Paso Estrella · Ramón Orlando · 2026<br>
+    178 canciones · 288.8M vistas · $758.9K valor no cobrado · eCPM $2.63
+  </div>
+
+</div>
+
+<script>
+// Smooth scroll for nav pills
+document.querySelectorAll('.pill').forEach(pill => {
+  pill.addEventListener('click', function(e){
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if(target){
+      target.scrollIntoView({behavior:'smooth', block:'center'});
+      target.classList.add('active');
+      document.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
+      this.classList.add('active');
+    }
+  });
+});
+
+// Auto-close other steps when opening one
+document.querySelectorAll('.funnel-step .step-header').forEach(header => {
+  header.addEventListener('click', function(){
+    const parent = this.closest('.funnel-step');
+    if(parent.classList.contains('active')){
+      // Will be toggled by onclick
+    } else {
+      document.querySelectorAll('.funnel-step').forEach(s => s.classList.remove('active'));
+      parent.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
