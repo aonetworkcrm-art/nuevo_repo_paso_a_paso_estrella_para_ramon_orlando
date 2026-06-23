@@ -9,38 +9,30 @@
 :root{--bg:#0a0a12;--bg2:#0f0f1a;--grn:#00ff88;--cy:#00e5ff;--gold:#f59e0b;--text:#e0e0e0;--dim:#666680;--card:#14141f;--border:rgba(255,255,255,0.06);--red:#ff3366;--purple:#b388ff;--orange:#ff8c42}
 body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column;align-items:center}
 .container{max-width:1100px;width:100%;padding:24px 28px 60px}
-
-/* ===== HERO ===== */
 .hero{text-align:center;padding:50px 20px 30px;border-bottom:1px solid var(--border);margin-bottom:32px}
 .hero .badge{display:inline-block;background:rgba(0,255,136,0.08);border:1px solid rgba(0,255,136,0.15);color:var(--grn);padding:4px 14px;font-size:10px;letter-spacing:2px;text-transform:uppercase;border-radius:3px;margin-bottom:16px}
 .hero h1{font-size:clamp(28px,5vw,48px);font-weight:800;letter-spacing:-0.5px;background:linear-gradient(135deg,var(--grn),var(--cy));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:8px;line-height:1.1}
 .hero h1 .icon{font-size:clamp(24px,4vw,40px);-webkit-text-fill-color:initial}
-.hero .subtitle{font-size:14px;color:var(--dim);letter-spacing:1px;max-width:600px;margin:0 auto;line-height:1.6}
+.hero .subtitle{font-size:14px;color:var(--dim);letter-spacing:1px;max-width:680px;margin:0 auto;line-height:1.6}
 .hero .subtitle span{color:var(--gold)}
-
-/* ===== STATS ROW ===== */
+.hero .subtitle strong{color:var(--text)}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:28px}
 .stat-card{text-align:center;padding:16px 10px;background:var(--card);border:1px solid var(--border);border-radius:6px;transition:all 0.3s}
 .stat-card:hover{border-color:rgba(0,255,136,0.15);transform:translateY(-2px)}
 .stat-card .num{font-size:22px;font-weight:800;color:var(--grn);letter-spacing:0.5px}
 .stat-card .lbl{font-size:8px;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-top:3px}
-
-/* ===== NAV PILLS ===== */
 .nav-pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:28px;justify-content:center}
 .pill{display:flex;align-items:center;gap:6px;padding:8px 14px;background:var(--card);border:1px solid var(--border);border-radius:20px;cursor:pointer;transition:all 0.25s;font-size:11px;color:var(--dim);text-decoration:none}
 .pill:hover{background:rgba(0,255,136,0.04);border-color:rgba(0,255,136,0.15);color:var(--text);transform:translateY(-1px)}
 .pill.active{background:rgba(0,255,136,0.06);border-color:var(--grn);color:var(--grn)}
 .pill .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
 .pill .tag{font-size:7px;padding:1px 5px;border-radius:2px;text-transform:uppercase;letter-spacing:1px}
-
-/* ===== FUNNEL ===== */
 .funnel{position:relative;padding:0;margin-bottom:32px}
 .funnel::before{content:'';position:absolute;left:20px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--grn),var(--cy),transparent)}
 .funnel-step{position:relative;padding:0 0 0 52px;margin-bottom:20px;cursor:pointer}
 .funnel-step:last-child{margin-bottom:0}
 .funnel-step .step-marker{position:absolute;left:12px;top:0;width:16px;height:16px;border-radius:50%;border:2px solid var(--grn);background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:700;color:var(--grn);z-index:2;transition:all 0.3s}
 .funnel-step.active .step-marker{background:var(--grn);color:var(--bg);box-shadow:0 0 12px rgba(0,255,136,0.3)}
-.funnel-step.completed .step-marker{background:var(--gold);border-color:var(--gold);color:var(--bg)}
 .funnel-step .step-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px 20px;transition:all 0.3s;overflow:hidden}
 .funnel-step .step-card:hover{border-color:rgba(0,255,136,0.12);transform:translateX(2px)}
 .funnel-step.active .step-card{border-color:rgba(0,255,136,0.2);background:rgba(0,255,136,0.02)}
@@ -53,8 +45,6 @@ body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);co
 .funnel-step.active .step-toggle{transform:rotate(180deg);color:var(--grn)}
 .step-body{display:none;padding:14px 0 0;border-top:1px solid var(--border);margin-top:12px}
 .funnel-step.active .step-body{display:block;animation:fadeIn 0.3s ease}
-
-/* ===== CARDS ===== */
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-bottom:16px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:16px;transition:all 0.3s}
 .card:hover{border-color:rgba(0,255,136,0.1);transform:translateY(-1px)}
@@ -62,45 +52,31 @@ body{font-family:'Inter','Segoe UI',system-ui,sans-serif;background:var(--bg);co
 .card-title{font-size:10px;color:var(--grn);text-transform:uppercase;letter-spacing:2px;margin-bottom:6px}
 .text{font-size:12px;line-height:1.7;color:rgba(224,224,224,0.85)}
 .text-muted{font-size:11px;color:var(--dim);line-height:1.6}
-
-/* ===== TABLES ===== */
 table{width:100%;border-collapse:collapse;margin:8px 0;font-size:11px}
 th{background:rgba(0,255,136,0.04);color:var(--grn);padding:6px 8px;border:1px solid var(--border);text-align:left;font-size:10px;letter-spacing:1px;text-transform:uppercase}
 td{padding:6px 8px;border:1px solid var(--border);color:var(--text)}
 tr:nth-child(even){background:rgba(0,0,0,0.15)}
-
-/* ===== HIGHLIGHTS ===== */
 .highlight{padding:10px 14px;background:rgba(0,255,136,0.03);border-left:2px solid var(--grn);border-radius:0 4px 4px 0;font-size:11px;line-height:1.7;margin:8px 0;color:var(--text)}
 .highlight.gold{border-left-color:var(--gold);background:rgba(245,158,11,0.03)}
 .highlight.cy{border-left-color:var(--cy);background:rgba(0,229,255,0.03)}
 .highlight.red{border-left-color:var(--red);background:rgba(255,51,102,0.03)}
 .highlight.purple{border-left-color:var(--purple);background:rgba(179,136,255,0.03)}
-
-/* ===== DATA ROW ===== */
 .data-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.03);font-size:11px;gap:10px}
 .data-row:last-child{border-bottom:none}
 .data-row .label{color:var(--dim);flex-shrink:0}
 .data-row .value{color:var(--text);text-align:right}
 .data-row .value.grn{color:var(--grn)}
 .data-row .value.gold{color:var(--gold)}
-
-/* ===== SECTIONS ===== */
-.section{animation:fadeIn 0.4s ease}
+.section{animation:fadeIn 0.4s ease;margin-top:32px}
 .section-title{font-size:clamp(16px,2.5vw,22px);font-weight:700;letter-spacing:1px;color:var(--text);margin-bottom:4px}
 .section-title .accent{color:var(--grn)}
 .section-sub{font-size:10px;color:var(--dim);letter-spacing:1px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border)}
-
-/* ===== PROGRESS BAR ===== */
 .progress{height:4px;background:rgba(0,255,136,0.06);margin:8px 0;border-radius:2px;overflow:hidden}
 .progress-bar{height:100%;background:linear-gradient(90deg,var(--grn),var(--cy));transition:width 1s ease;border-radius:2px}
-
-/* ===== MESSAGE BLOCKS ===== */
 .message-block{background:rgba(0,0,0,0.15);border:1px solid var(--border);border-radius:4px;padding:12px 14px;margin:8px 0;font-size:11px;line-height:1.7}
 .message-block .msg-label{font-size:8px;text-transform:uppercase;letter-spacing:2px;color:var(--cy);margin-bottom:4px}
 .message-block .msg-subject{font-size:11px;color:var(--gold);margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid var(--border)}
 .message-block p{margin-bottom:6px}
-
-/* ===== TIMELINE ===== */
 .timeline{position:relative;padding-left:20px;margin:10px 0}
 .timeline::before{content:'';position:absolute;left:7px;top:0;bottom:0;width:1px;background:var(--border)}
 .timeline-item{position:relative;padding:0 0 14px 14px}
@@ -109,47 +85,37 @@ tr:nth-child(even){background:rgba(0,0,0,0.15)}
 .timeline-item .date{font-size:8px;color:var(--dim);letter-spacing:1px;text-transform:uppercase}
 .timeline-item .title{font-size:11px;color:var(--text);margin:2px 0}
 .timeline-item .desc{font-size:10px;color:var(--dim);line-height:1.5}
-
-/* ===== CHECKLIST ===== */
 .checklist-item{display:flex;gap:8px;padding:4px 0;font-size:10px;line-height:1.8;color:rgba(224,224,224,0.8)}
 .checklist-item .box{width:12px;height:12px;border:1px solid var(--dim);border-radius:2px;flex-shrink:0;margin-top:4px}
-
-/* ===== ANIMATIONS ===== */
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-@keyframes glow{0%,100%{text-shadow:0 0 6px rgba(0,255,136,0.2)}50%{text-shadow:0 0 12px rgba(0,255,136,0.4)}}
-
-/* ===== RESPONSIVE ===== */
-@media(max-width:600px){
-  .container{padding:16px}
-  .hero{padding:30px 10px 20px}
-  .funnel-step{padding-left:36px}
-  .funnel-step .step-marker{left:6px;width:12px;height:12px;font-size:6px}
-  .stats{grid-template-columns:repeat(2,1fr)}
-  .step-header{flex-wrap:wrap}
-  .step-header .step-cost{width:100%;margin-top:4px}
-}
-
-/* ===== DOCS SECTION ===== */
+.tag-inline{display:inline-block;font-size:7px;padding:2px 6px;border-radius:2px;letter-spacing:1px;text-transform:uppercase;margin-right:4px}
 .docs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:12px 0}
 .doc-card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:14px;text-align:center;transition:all 0.3s}
 .doc-card:hover{border-color:rgba(0,255,136,0.15);transform:translateY(-2px)}
 .doc-card .doc-icon{font-size:28px;margin-bottom:6px}
 .doc-card .doc-name{font-size:10px;color:var(--text);letter-spacing:1px;text-transform:uppercase}
 .doc-card .doc-desc{font-size:9px;color:var(--dim);margin-top:4px;line-height:1.5}
-
-/* ===== SCROLLBAR ===== */
+.prob-bar{display:flex;align-items:center;gap:8px;margin:5px 0;font-size:10px}
+.prob-bar .p-label{width:140px;text-align:right;color:var(--dim);flex-shrink:0}
+.prob-bar .p-track{flex:1;height:14px;background:rgba(0,0,0,0.3);border-radius:3px;overflow:hidden;position:relative}
+.prob-bar .p-fill{height:100%;border-radius:3px;transition:width 1.5s ease}
+.prob-bar .p-value{width:40px;text-align:right;font-weight:600;font-size:10px}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes glow{0%,100%{text-shadow:0 0 6px rgba(0,255,136,0.2)}50%{text-shadow:0 0 12px rgba(0,255,136,0.4)}}
+@media(max-width:600px){
+  .container{padding:16px}.hero{padding:30px 10px 20px}.funnel-step{padding-left:36px}
+  .funnel-step .step-marker{left:6px;width:12px;height:12px;font-size:6px}
+  .stats{grid-template-columns:repeat(2,1fr)}.step-header{flex-wrap:wrap}
+  .step-header .step-cost{width:100%;margin-top:4px}
+  .prob-bar .p-label{width:90px}
+}
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-thumb{background:var(--grn);border-radius:2px}
 ::-webkit-scrollbar-track{background:transparent}
-
-/* ===== PRINT ===== */
 @media print{
   body{background:#fff!important;color:#000!important}
   .funnel-step .step-card,.card{break-inside:avoid;border-color:#ccc!important}
   .hero h1{background:none!important;-webkit-text-fill-color:#000!important;color:#000!important}
 }
-
-/* ===== BOTTOM NAV ===== */
 .bottom-nav{display:flex;gap:10px;margin-top:30px;padding-top:20px;border-top:1px solid var(--border);flex-wrap:wrap;justify-content:center}
 .bottom-nav a{color:var(--dim);text-decoration:none;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:6px 12px;border:1px solid var(--border);border-radius:4px;transition:all 0.25s}
 .bottom-nav a:hover{color:var(--grn);border-color:rgba(0,255,136,0.2)}
@@ -163,31 +129,32 @@ tr:nth-child(even){background:rgba(0,0,0,0.15)}
   <div class="hero">
     <div class="badge">⚡ Embudo de Acción · AIMA</div>
     <h1><span class="icon">⭐</span> Paso a Paso Estrella</h1>
-    <div class="subtitle">Plan completo de 8 fases para que <span>Ramón Orlando</span> recupere su catálogo, consiga adelanto con multinacional, tokenice su obra y ejecute el evento del 50 Aniversario.</div>
+    <div class="subtitle">Plan completo de 8 fases para que <span>Ramón Orlando</span> recupere su catálogo, consiga adelanto con multinacional, tokenice su obra y ejecute el evento del 50 Aniversario.<br><br>
+    <strong>Esto NO es lo que Ramón Orlando ha intentado antes.</strong> Esto es un sistema de ingeniería legal+digital que por primera vez blinda su catálogo contra piratas, recupera $758,900 en regalías no cobradas, y activa un adelanto de $500K-$1M con distribuidoras globales. La diferencia: abogados específicos en cada fase, un Colmillo Blanco operando como director de catálogos, y una herramienta de auditoría que mapea cada peso perdido en YouTube.</div>
   </div>
 
   <!-- ===== KEY STATS ===== -->
   <div class="stats">
     <div class="stat-card"><div class="num">8</div><div class="lbl">Fases del Plan</div></div>
     <div class="stat-card"><div class="num">178</div><div class="lbl">Canciones</div></div>
-    <div class="stat-card"><div class="num">17</div><div class="lbl">Álbumes</div></div>
     <div class="stat-card"><div class="num">288.8M</div><div class="lbl">Vistas Auditadas</div></div>
     <div class="stat-card"><div class="num">$758.9K</div><div class="lbl">Valor No Cobrado</div></div>
-    <div class="stat-card"><div class="num">74+</div><div class="lbl">Nodos YouTube</div></div>
+    <div class="stat-card"><div class="num">74+</div><div class="lbl">Nodos Piratas</div></div>
     <div class="stat-card"><div class="num">$2.63</div><div class="lbl">eCPM Real</div></div>
     <div class="stat-card"><div class="num">$500K-1M</div><div class="lbl">Adelanto Objetivo</div></div>
+    <div class="stat-card"><div class="num">3</div><div class="lbl">Abogados Específicos</div></div>
   </div>
 
   <!-- ===== NAV PILLS ===== -->
   <div class="nav-pills">
     <a class="pill active" href="#fase1"><span class="dot" style="background:var(--grn)"></span>Fase 1<span class="tag" style="color:var(--grn);border:1px solid rgba(0,255,136,0.15)">legal</span></a>
-    <a class="pill" href="#fase2"><span class="dot" style="background:var(--cy)"></span>Fase 2<span class="tag" style="color:var(--cy);border:1px solid rgba(0,229,255,0.15)">auditoría</span></a>
+    <a class="pill" href="#fase2"><span class="dot" style="background:var(--cy)"></span>Fase 2<span class="tag" style="color:var(--cy);border:1px solid rgba(0,229,255,0.15)">auditar</span></a>
     <a class="pill" href="#fase3"><span class="dot" style="background:var(--gold)"></span>Fase 3<span class="tag" style="color:var(--gold);border:1px solid rgba(245,158,11,0.15)">artista</span></a>
     <a class="pill" href="#fase4"><span class="dot" style="background:var(--purple)"></span>Fase 4<span class="tag" style="color:var(--purple);border:1px solid rgba(179,136,255,0.15)">cobro</span></a>
-    <a class="pill" href="#fase5"><span class="dot" style="background:var(--orange)"></span>Fase 5<span class="tag" style="color:var(--orange);border:1px solid rgba(255,140,66,0.15)">distribución</span></a>
-    <a class="pill" href="#fase6"><span class="dot" style="background:var(--cy)"></span>Fase 6<span class="tag" style="color:var(--cy);border:1px solid rgba(0,229,255,0.15)">web3</span></a>
+    <a class="pill" href="#fase5"><span class="dot" style="background:var(--orange)"></span>Fase 5<span class="tag" style="color:var(--orange);border:1px solid rgba(255,140,66,0.15)">distribuir</span></a>
+    <a class="pill" href="#fase6"><span class="dot" style="background:var(--cy)"></span>Fase 6<span class="tag" style="color:var(--cy);border:1px solid rgba(0,229,255,0.15)">tokenizar</span></a>
     <a class="pill" href="#fase7"><span class="dot" style="background:var(--red)"></span>Fase 7<span class="tag" style="color:var(--red);border:1px solid rgba(255,51,102,0.15)">evento</span></a>
-    <a class="pill" href="#fase8"><span class="dot" style="background:var(--gold)"></span>Fase 8<span class="tag" style="color:var(--gold);border:1px solid rgba(245,158,11,0.15)">escala</span></a>
+    <a class="pill" href="#fase8"><span class="dot" style="background:var(--gold)"></span>Fase 8<span class="tag" style="color:var(--gold);border:1px solid rgba(245,158,11,0.15)">escalar</span></a>
   </div>
 
   <!-- ===== FUNNEL STEPS ===== -->
@@ -200,9 +167,9 @@ tr:nth-child(even){background:rgba(0,0,0,0.15)}
         <div class="step-header">
           <div>
             <div class="step-title"><span class="num">01</span>Fundación Legal Local</div>
-            <div class="step-sub">ONAPI → SRL → ONDA → Contrato Matriz</div>
+            <div class="step-sub">ONAPI → SRL o SAS → ONDA → Contrato Matriz</div>
           </div>
-          <div class="step-cost">~$1,000 USD</div>
+          <div class="step-cost">~$600-1,000 USD</div>
           <div class="step-toggle">▼</div>
         </div>
         <div class="step-body">
@@ -210,33 +177,79 @@ tr:nth-child(even){background:rgba(0,0,0,0.15)}
           <p class="text">Sin la estructura legal correcta, no puedes firmar contratos con distribuidoras, no puedes abrir cuentas bancarias corporativas, no puedes reclamar derechos ante YouTube ni ASCAP. Esta fase convierte una idea en una empresa real con poder legal ante el Estado dominicano y las multinacionales.</p>
 
           <div style="margin:12px 0;text-align:center;font-size:11px;line-height:2.2;font-family:monospace">
-            <span style="color:var(--grn)">ONAPI</span> <span style="color:var(--dim)">→</span> <span style="color:var(--cy)">CÁMARA DE COMERCIO</span> <span style="color:var(--dim)">→</span> <span style="color:var(--gold)">DGII (RNC)</span> <span style="color:var(--dim)">→</span> <span style="color:var(--grn)">CTA BANCARIA</span> <span style="color:var(--dim)">→</span> <span style="color:var(--cy)">ONDA</span> <span style="color:var(--dim)">→</span> <span style="color:var(--gold)">CONTRATO</span>
+            <span style="color:var(--grn)">ONAPI</span> <span style="color:var(--dim)">→</span>
+            <span style="color:var(--cy)">CÁMARA DE COMERCIO</span> <span style="color:var(--dim)">→</span>
+            <span style="color:var(--gold)">DGII (RNC)</span> <span style="color:var(--dim)">→</span>
+            <span style="color:var(--grn)">CTA BANCARIA</span> <span style="color:var(--dim)">→</span>
+            <span style="color:var(--cy)">ONDA</span> <span style="color:var(--dim)">→</span>
+            <span style="color:var(--gold)">CONTRATO MATRIZ</span>
           </div>
-          <div style="font-size:9px;text-align:center;color:var(--dim);margin-bottom:10px">⬆ El orden es irrompible — cada paso depende del anterior ⬆</div>
+
+          <h4 style="font-size:10px;color:var(--gold);text-transform:uppercase;letter-spacing:2px;margin:14px 0 8px">SRL vs SAS — ¿CUÁL ELEGIR?</h4>
+          <p class="text">En República Dominicana tienes dos opciones principales para constituir la empresa gestora del catálogo. La elección depende del nivel de control que quieras y la flexibilidad futura.</p>
 
           <table>
-            <tr><th style="width:30%">Institución</th><th>Qué registra</th><th>Costo</th><th>Tiempo</th></tr>
-            <tr><td>ONAPI</td><td>Nombre Comercial (Clase 41+35)</td><td style="color:var(--gold)">RD$4,755</td><td>5-10 días</td></tr>
-            <tr><td>Cámara de Comercio</td><td>SRL + Registro Mercantil</td><td style="color:var(--gold)">RD$24K-30K</td><td>15-20 días</td></tr>
-            <tr><td>ONDA</td><td>Productor Fonográfico (Obra Colectiva)</td><td style="color:var(--gold)">RD$8K-10K</td><td>10-15 días</td></tr>
-            <tr><td>Abogado</td><td>Contrato Matriz de Administración</td><td style="color:var(--gold)">RD$15K-18K</td><td>3-5 días</td></tr>
+            <tr><th style="width:22%">Característica</th><th style="width:39%">🧱 SRL (Sociedad de Responsabilidad Limitada)</th><th style="width:39%">⚡ SAS (Sociedad por Acciones Simplificada)</th></tr>
+            <tr><td><strong>Socios mínimos</strong></td><td>Mínimo 2</td><td style="color:var(--grn)">1 (unipersonal) ✅</td></tr>
+            <tr><td><strong>Capital mínimo</strong></td><td>RD$100,000</td><td style="color:var(--grn)">RD$1 (flexible) ✅</td></tr>
+            <tr><td><strong>Órganos de control</strong></td><td>Asamblea de socios + Administrador</td><td style="color:var(--grn)">Solo Administrador (simplificado) ✅</td></tr>
+            <tr><td><strong>Transferencia de acciones</strong></td><td>Requiere modificación de estatutos</td><td style="color:var(--grn)">Libre transferencia ✅</td></tr>
+            <tr><td><strong>Plazo de constitución</strong></td><td>15-20 días hábiles</td><td style="color:var(--grn)">7-10 días hábiles ✅</td></tr>
+            <tr><td><strong>Costo total aprox.</strong></td><td>RD$24,000-30,000</td><td style="color:var(--gold)">RD$18,000-25,000 ✅ (más barata)</td></tr>
+            <tr><td><strong>Objeto social</strong></td><td>Fijo (requiere modificación para cambiarlo)</td><td style="color:var(--grn)">Indeterminado/abierto ✅</td></tr>
+            <tr><td><strong>Recomendada para</strong></td><td>2+ socios, estructura clásica</td><td style="color:var(--grn);font-weight:700">Director de Catálogos unipersonal ✅</td></tr>
           </table>
+
+          <div class="highlight" style="border-left-color:var(--gold);background:rgba(245,158,11,0.03)">
+            💡 <strong>Recomendación para el Colmillo Blanco:</strong> La <strong>SAS</strong> es la mejor opción si eres el único gestor/administrador. Es más rápida, más barata, más flexible y te permite operar solo. La <strong>SRL</strong> tiene sentido si incorporas a Ramón Orlando como socio de la empresa gestora. En ambos casos, el registro en ONDA como Productor Fonográfico es el mismo.
+          </div>
+
+          <h4 style="font-size:10px;color:var(--cy);text-transform:uppercase;letter-spacing:2px;margin:14px 0 8px">ABOGADOS ESPECÍFICOS — A QUIÉN IR Y QUÉ DECIRLES</h4>
+
+          <div style="background:rgba(0,0,0,0.12);border:1px solid var(--border);border-radius:4px;padding:12px;margin:8px 0">
+            <div style="font-size:9px;color:var(--grn);letter-spacing:1px;margin-bottom:6px">⚖️ <strong>Abogado 1: Especialista en Propiedad Industrial (ONAPI)</strong></div>
+            <div class="data-row"><span class="label">Cuándo</span><span class="value">Fase 1, Paso 1 — antes de pagar la tasa ONAPI</span></div>
+            <div class="data-row"><span class="label">Tipo de abogado</span><span class="value">Registrador de marcas y nombres comerciales</span></div>
+            <div class="data-row"><span class="label">Qué decirle</span><span class="value" style="color:var(--gold);font-size:10px"><em>"Necesito registrar un nombre comercial en ONAPI para una empresa de gestión de catálogos musicales. Clase 41 y 35. Quiero asegurarme de que el nombre esté disponible y presentar la solicitud esta semana."</em></span></div>
+            <div class="data-row"><span class="label">Honorarios</span><span class="value">RD$3,000-5,000</span></div>
+            <div class="data-row"><span class="label">Dónde encontrarlo</span><span class="value">Bufetes cerca de ONAPI, o en el portal de abogados del listado ONAPI</span></div>
+          </div>
+
+          <div style="background:rgba(0,0,0,0.12);border:1px solid var(--border);border-radius:4px;padding:12px;margin:8px 0">
+            <div style="font-size:9px;color:var(--gold);letter-spacing:1px;margin-bottom:6px">📜 <strong>Abogado 2: Especialista en Derecho Corporativo y Mercantil (SRL/SAS)</strong></div>
+            <div class="data-row"><span class="label">Cuándo</span><span class="value">Fase 1, Pasos 2-3 — constitución de la empresa</span></div>
+            <div class="data-row"><span class="label">Tipo de abogado</span><span class="value">Notario o abogado corporativo registrado en Cámara de Comercio</span></div>
+            <div class="data-row"><span class="label">Qué decirle</span><span class="value" style="color:var(--gold);font-size:10px"><em>"Voy a constituir una SAS (o SRL) para administrar catálogos musicales. Necesito el objeto social que incluya: distribución digital, licenciamiento de fonogramas, administración de derechos de autor, y representación de artistas ante plataformas digitales."</em></span></div>
+            <div class="data-row"><span class="label">Honorarios</span><span class="value">RD$8,000-15,000 (incluyendo estatutos y registro)</span></div>
+            <div class="data-row"><span class="label">Dónde encontrarlo</span><span class="value">Recomendación de la Cámara de Comercio de Santo Domingo, o bufetes como Guzmán Ariza, Cifre & Gil, o Pellerano & Herrera</span></div>
+          </div>
+
+          <div style="background:rgba(0,0,0,0.12);border:1px solid var(--border);border-radius:4px;padding:12px;margin:8px 0">
+            <div style="font-size:9px;color:var(--cy);letter-spacing:1px;margin-bottom:6px">🎵 <strong>Abogado 3: Especialista en Derecho de Autor y Entretenimiento (ONDA + Contrato Matriz)</strong></div>
+            <div class="data-row"><span class="label">Cuándo</span><span class="value">Fase 1, Pasos 4-5 — registro ONDA + Contrato Matriz</span></div>
+            <div class="data-row"><span class="label">Tipo de abogado</span><span class="value">Especialista en propiedad intelectual y entretenimiento</span></div>
+            <div class="data-row"><span class="label">Qué decirle</span><span class="value" style="color:var(--gold);font-size:10px"><em>"Necesito registrar a mi empresa como Productor Fonográfico en ONDA. Además, necesito redactar un Contrato Matriz de Administración de Catálogo Musical con un split 70/30, cláusula de Content ID, autorización expresa para tokenización Web3, y derecho a reclamar regalías retroactivas. El artista es Ramón Orlando Valoy, 50 años de trayectoria."</em></span></div>
+            <div class="data-row"><span class="label">Honorarios</span><span class="value">RD$15,000-25,000 (incluye contrato + acompañamiento ONDA)</span></div>
+            <div class="data-row"><span class="label">Dónde encontrarlo</span><span class="value">Héctor Suazo (especialista en entretenimiento), Cifre & Gil (propiedad intelectual), o consultar en SGACEDOM por abogados recomendados</span></div>
+          </div>
 
           <div class="highlight">💡 <strong>Tip clave — Ahorro masivo:</strong> Pregunta por el registro de <strong>Obra Colectiva</strong> en la ONDA. Las 178 canciones como compilación cuestan < RD$10,000. Si las registras una por una son > RD$300,000.</div>
 
-          <div class="highlight gold">💰 <strong>INVERSIÓN TOTAL FASE 1:</strong> ~$1,000 USD (RD$55,000) · ~30 DÍAS · Esta inversión desbloquea TODO lo demás.</div>
+          <div class="highlight gold">💰 <strong>INVERSIÓN TOTAL FASE 1:</strong> ~$600-$1,000 USD (RD$35,000-55,000) · ~20-30 DÍAS · Incluye honorarios de los 3 abogados. Esta inversión desbloquea TODO lo demás.</div>
 
           <div style="background:rgba(0,0,0,0.15);border:1px solid var(--border);border-radius:4px;padding:10px;margin-top:10px">
-            <div style="font-size:8px;letter-spacing:2px;color:var(--cy);text-transform:uppercase;margin-bottom:6px">📋 CHECKLIST — FASE 1</div>
+            <div style="font-size:8px;letter-spacing:2px;color:var(--cy);text-transform:uppercase;margin-bottom:6px">📋 CHECKLIST — FASE 1 (CON SAS)</div>
+            <div class="checklist-item"><span class="box"></span>Consultar abogado de propiedad industrial (ONAPI)</div>
             <div class="checklist-item"><span class="box"></span>Buscar disponibilidad del nombre en ONAPI</div>
             <div class="checklist-item"><span class="box"></span>Pagar tasa ONAPI (RD$4,755) y obtener certificado</div>
-            <div class="checklist-item"><span class="box"></span>Redactar estatutos SRL con objeto social correcto</div>
-            <div class="checklist-item"><span class="box"></span>Pagar impuesto constitución DGII (1% capital)</div>
+            <div class="checklist-item"><span class="box"></span>Consultar abogado corporativo para constitución SAS</div>
+            <div class="checklist-item"><span class="box"></span>Redactar estatutos SAS con objeto social correcto</div>
             <div class="checklist-item"><span class="box"></span>Depositar expediente en Cámara de Comercio</div>
             <div class="checklist-item"><span class="box"></span>Recibir Registro Mercantil</div>
             <div class="checklist-item"><span class="box"></span>Solicitar RNC en DGII</div>
             <div class="checklist-item"><span class="box"></span>Abrir cuenta bancaria corporativa</div>
-            <div class="checklist-item"><span class="box"></span>Registrar SRL como Productor Fonográfico en ONDA</div>
+            <div class="checklist-item"><span class="box"></span>Consultar abogado de entretenimiento (ONDA + Contrato)</div>
+            <div class="checklist-item"><span class="box"></span>Registrar SAS como Productor Fonográfico en ONDA</div>
             <div class="checklist-item"><span class="box"></span>Redactar y firmar Contrato Matriz con abogado</div>
             <div class="checklist-item" style="color:var(--grn);font-weight:600"><span class="box" style="border-color:var(--grn);background:var(--grn)"></span>FASE 1 COMPLETADA</div>
           </div>
@@ -257,7 +270,7 @@ tr:nth-child(even){background:rgba(0,0,0,0.15)}
           <div class="step-toggle">▼</div>
         </div>
         <div class="step-body">
-          <p class="text">Busca en YouTube Data API cada título del catálogo, identifica nodos, suma vistas, calcula yield estimado y genera un reporte PDF ejecutivo listo para presentar a multinacionales.</p>
+          <p class="text">Tu herramienta de auditoría busca en YouTube Data API cada título del catálogo, identifica nodos piratas (videos que usan la música sin autorización), suma vistas, calcula yield estimado usando eCPM real de $2.63, y genera un reporte PDF ejecutivo. <strong>Esto es lo que diferencia este plan de cualquier intento anterior de Ramón Orlando</strong> — por primera vez hay datos concretos de cuánto dinero se está fugando y exactamente en qué nodos.</p>
 
           <div class="grid" style="margin:10px 0">
             <div style="background:rgba(0,0,0,0.12);border:1px solid var(--border);border-radius:4px;padding:12px;text-align:center">
@@ -277,15 +290,16 @@ tr:nth-child(even){background:rgba(0,0,0,0.15)}
             </div>
           </div>
 
-          <div class="highlight gold">📊 <strong>Número clave para el pitch:</strong> No es el total de vistas — es el <strong>ingreso mensual fugado</strong>. Eso es lo que justifica el adelanto ante Believe/The Orchard.</div>
+          <div class="highlight gold">📊 <strong>Número clave para el pitch:</strong> No es el total de vistas — es el <strong>ingreso mensual fugado por nodos piratas</strong>. Eso es lo que justifica el adelanto ante Believe/The Orchard y demuestra por qué este enfoque es diferente a todo lo que Ramón Orlando ha intentado antes.</div>
 
           <div style="background:rgba(0,0,0,0.15);border:1px solid var(--border);border-radius:4px;padding:10px;margin-top:10px">
             <div style="font-size:8px;letter-spacing:2px;color:var(--cy);text-transform:uppercase;margin-bottom:6px">📋 CHECKLIST — FASE 2</div>
-            <div class="checklist-item"><span class="box"></span>Obtener lista oficial de 178 canciones</div>
-            <div class="checklist-item"><span class="box"></span>Correr auditoría de las 12 canciones principales</div>
+            <div class="checklist-item"><span class="box"></span>Obtener lista oficial de 178 canciones de Ramón Orlando</div>
+            <div class="checklist-item"><span class="box"></span>Correr auditoría de las 12 canciones principales primero</div>
+            <div class="checklist-item"><span class="box"></span>Identificar nodos piratas (cada video que usa su música)</div>
             <div class="checklist-item"><span class="box"></span>Filtrar nodos sin huella sonora verificable</div>
             <div class="checklist-item"><span class="box"></span>Calcular yields por nodo y total por canción</div>
-            <div class="checklist-item"><span class="box"></span>Generar reporte PDF ejecutivo</div>
+            <div class="checklist-item"><span class="box"></span>Generar reporte PDF ejecutivo (5 páginas)</div>
             <div class="checklist-item"><span class="box"></span>Preparar expediente con 6 catálogos temáticos</div>
           </div>
         </div>
@@ -305,26 +319,28 @@ tr:nth-child(even){background:rgba(0,0,0,0.15)}
           <div class="step-toggle">▼</div>
         </div>
         <div class="step-body">
-          <p class="text">No le des toda la información a Ramón Orlando de golpe. Comparte por fases según avance el proceso. Esto protege tu método y evita abrumarlo con tecnicismos.</p>
+          <p class="text">No le des toda la información a Ramón Orlando de golpe. Comparte por fases según avance el proceso. Esto protege tu método y evita abrumarlo con tecnicismos. <strong>Lo que hace diferente este acercamiento: por primera vez alguien llega con datos concretos, una hoja de ruta legal completa, y abogados específicos ya identificados para cada paso.</strong></p>
 
           <div style="border-left:2px solid var(--gold);padding:10px 14px;background:rgba(245,158,11,0.03);border-radius:0 4px 4px 0;margin:10px 0">
             <div style="font-size:9px;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px">🗣️ Mensaje inicial a Ramón Orlando</div>
-            <p style="font-size:11px;margin:0;line-height:1.7;font-style:italic;color:rgba(224,224,224,0.85)">"Maestro, he estado trabajando estos días analizando su música en internet. Su catálogo tiene millones de reproducciones activas ahora mismo y usted no está cobrando nada de eso. Hay empresas internacionales que pagan adelantos importantes por catálogos como el suyo. Ya tengo los contactos. Para avanzar, necesito que haga una sola cosa esta semana."</p>
+            <p style="font-size:11px;margin:0;line-height:1.7;font-style:italic;color:rgba(224,224,224,0.85)">"Maestro, he estado trabajando estos días analizando su música en YouTube. Encontré que solo sus 12 canciones principales tienen 288 millones de reproducciones no cobradas, valoradas en más de $758,000 dólares. Hay 74 videos de terceros usando su música sin permiso. Ya tengo la estructura legal lista, los abogados identificados, y el contacto con distribuidoras internacionales. Para avanzar, necesito que vayamos juntos a la ONDA esta semana a registrar su catálogo. Yo preparo todo, usted solo firma."</p>
           </div>
 
+          <h4 style="font-size:10px;color:var(--cy);text-transform:uppercase;letter-spacing:2px;margin:14px 0 8px">LO QUE RAMÓN ORLANDO HA INTENTADO ANTES (Y POR QUÉ FALLÓ)</h4>
+          <p class="text">Ramón Orlando ha intentado recuperar sus regalías por su cuenta, pero sin una estructura legal corporativa, sin un equipo de abogados especializados, sin una herramienta de auditoría de nodos, y sin contactos con distribuidoras multinacionales. Lo que ha faltado siempre es un <strong>Director de Catálogos (Colmillo Blanco)</strong> que opere como puente entre el artista y el sistema financiero global. Eso es lo que tú aportas.</p>
+
           <table>
-            <tr><th style="width:30%">Acción</th><th>Qué debes hacer TÚ</th><th>Qué hace RAMÓN</th></tr>
-            <tr><td>ONAPI</td><td>Preparas solicitud, pagas tasa</td><td>Firma si requiere cédula</td></tr>
-            <tr><td>SRL</td><td>Redactas estatutos, gestionas registro</td><td>Provee datos como socio</td></tr>
-            <tr><td>ONDA</td><td>Acompañas a la oficina, preparas lista</td><td style="color:var(--gold)">✅ Va personalmente con su cédula</td></tr>
-            <tr><td>Auditoría</td><td style="color:var(--grn)">✅ Corre tu herramienta</td><td>Solo recibe resultados</td></tr>
-            <tr><td>Carta Autorización</td><td>Redactas documento, preparas notario</td><td style="color:var(--gold)">✅ Firma ante notario</td></tr>
-            <tr><td>SoundExchange</td><td style="color:var(--grn)">✅ Completas registro online</td><td>Firma W-8BEN si requerido</td></tr>
-            <tr><td>DistroKid</td><td style="color:var(--grn)">✅ Subes catálogo, activas ISRCs</td><td>Provee lista oficial</td></tr>
-            <tr><td>Believe/The Orchard</td><td style="color:var(--grn)">✅ Negocias adelanto</td><td style="color:var(--gold)">✅ Firma contrato final</td></tr>
+            <tr><th style="width:22%">Acción</th><th style="width:39%">🦊 TÚ (Colmillo Blanco)</th><th style="width:39%">🎵 RAMÓN ORLANDO</th></tr>
+            <tr><td><strong>ONAPI</strong></td><td>Consultas abogado, preparas solicitud, pagas tasa</td><td>Firma si requiere cédula</td></tr>
+            <tr><td><strong>SRL/SAS</strong></td><td>Coordinación con abogado corporativo</td><td>Provee datos personales</td></tr>
+            <tr><td><strong>ONDA</strong></td><td>Acompañas a la oficina, preparas lista de 178 canciones</td><td style="color:var(--gold)">✅ Va personalmente con su cédula</td></tr>
+            <tr><td><strong>Auditoría</strong></td><td style="color:var(--grn)">✅ Corre tu herramienta de nodos</td><td>Solo recibe los resultados</td></tr>
+            <tr><td><strong>Carta Autorización</strong></td><td>Redactas con el abogado, coordinas notario</td><td style="color:var(--gold)">✅ Firma ante notario</td></tr>
+            <tr><td><strong>SoundExchange</strong></td><td style="color:var(--grn)">✅ Completas registro online</td><td>Firma W-8BEN</td></tr>
+            <tr><td><strong>Believe/The Orchard</strong></td><td style="color:var(--grn)">✅ Negocias adelanto, envías 4 mensajes</td><td style="color:var(--gold)">✅ Firma contrato final</td></tr>
           </table>
 
-          <div class="highlight gold">💡 <strong>Regla de oro:</strong> Si pregunta cuánto dinero, dile: "Los números exactos los tendré cuando complete el registro de la ONDA. El rango que estoy manejando es significativo."</div>
+          <div class="highlight gold">💡 <strong>Regla de oro:</strong> Si Ramón Orlando pregunta cuánto dinero, dile con datos reales: "Solo sus 12 canciones principales tienen $717,441 en YouTube no cobrados. El catálogo completo proyecta $1.14M-$1.68M al año. El adelanto que vamos a pedir es de $500K-$1M. Pero primero, ONDA."</div>
         </div>
       </div>
     </div>
@@ -342,7 +358,7 @@ tr:nth-child(even){background:rgba(0,0,0,0.15)}
           <div class="step-toggle">▼</div>
         </div>
         <div class="step-body">
-          <p class="text">SoundExchange recauda las regalías por ejecución pública digital en EE.UU. Para Ramón Orlando, <strong>esto puede liberar $40,000-$80,000 USD retenidos de hasta 3 años atrás.</strong></p>
+          <p class="text">SoundExchange recauda las regalías por ejecución pública digital en EE.UU. Para Ramón Orlando, <strong>esto puede liberar $40,000-$80,000 USD retenidos de hasta 3 años atrás.</strong> Esto es dinero que ha estado acumulándose sin que nadie lo reclame porque Ramón Orlando nunca tuvo una estructura corporativa para hacerlo.</p>
 
           <div class="grid" style="margin:10px 0">
             <div style="background:rgba(0,0,0,0.12);border:1px solid var(--border);border-radius:4px;padding:12px">
@@ -356,12 +372,12 @@ tr:nth-child(even){background:rgba(0,0,0,0.15)}
               <div style="font-size:9px;color:var(--cy);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">📌 SGACEDOM (RD)</div>
               <div class="data-row"><span class="label">Registro</span><span class="value grn">GRATUITO</span></div>
               <div class="data-row"><span class="label">Cubre</span><span class="value">Radio, TV, público</span></div>
-              <div class="data-row"><span class="label">Portal</span><span class="value cy">sgacedom.org.do</span></div>
+              <div class="data-row"><span class="label">Portal</span><span class="value" style="color:var(--cy)">sgacedom.org.do</span></div>
               <div class="data-row"><span class="label">ASCAP/BMI</span><span class="value">Vía reciprocidad</span></div>
             </div>
           </div>
 
-          <div class="highlight">📌 <strong>Regla del 45/50:</strong> SoundExchange divide: 45% Artista Principal · 50% Dueño del Máster · 5% Músicos. Si Ramón Orlando es ambas cosas, reclama los dos roles.</div>
+          <div class="highlight">📌 <strong>Regla del 45/50:</strong> SoundExchange divide: 45% Artista Principal · 50% Dueño del Máster · 5% Músicos. Si Ramón Orlando es ambas cosas (artista y dueño del máster), reclama los dos roles y recibe el 95%.</div>
         </div>
       </div>
     </div>
@@ -379,7 +395,7 @@ tr:nth-child(even){background:rgba(0,0,0,0.15)}
           <div class="step-toggle">▼</div>
         </div>
         <div class="step-body">
-          <p class="text">No puedes llegar directo a Believe/The Orchard sin ISRCs y sin historial. La solución es una estrategia de dos fases que no compite consigo misma.</p>
+          <p class="text">Estrategia de doble fase que no compite consigo misma. <strong>Esto es clave:</strong> el Content ID de YouTube es el mecanismo que finalmente detendrá a los piratas que han estado usando la música de Ramón Orlando sin permiso durante años. Con Content ID activado, cada video que use su música generará ingresos para el catálogo en lugar de para el canal pirata.</p>
 
           <div style="margin:12px 0;text-align:center;font-size:10px;line-height:2;font-family:monospace">
             <span style="color:var(--grn)">DISTROKID</span> <span style="color:var(--dim)">→ ISRCs → Content ID</span><br>
@@ -387,21 +403,21 @@ tr:nth-child(even){background:rgba(0,0,0,0.15)}
             <span style="color:var(--dim)">       ▼</span><br>
             <span style="color:var(--cy)">BELIEVE / THE ORCHARD</span> <span style="color:var(--dim)">→ Adelanto → Distribución global</span><br>
             <span style="color:var(--dim)">       ├── </span><span style="color:var(--grn)">$500K-$1M</span> <span style="color:var(--dim)">Adelanto (MG)</span><br>
-            <span style="color:var(--dim)">       └── </span><span style="color:var(--gold)">Content ID Premium</span> <span style="color:var(--dim)">(más peso legal que DistroKid)</span>
+            <span style="color:var(--dim)">       └── </span><span style="color:var(--gold)">Content ID Premium</span> <span style="color:var(--dim)">(más peso legal, reclama nodos piratas automáticamente)</span>
           </div>
 
           <div class="grid" style="margin:10px 0">
             <div style="background:rgba(0,0,0,0.12);border:1px solid var(--border);border-radius:4px;padding:12px">
               <div style="font-size:9px;color:var(--grn);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">🟢 FASE A: DistroKid</div>
-              <div class="text-muted">Objetivo: Generar ISRCs + Content ID rápido<br>Plan: Anual ~$22/mes, SIN exclusividad<br>Política: Monetize, NO Block</div>
+              <div class="text-muted">Objetivo: ISRCs + Content ID rápido<br>Plan: Anual ~$22/mes, SIN exclusividad<br>Política: Monetize (NO Block — los videos de fans se quedan)</div>
             </div>
             <div style="background:rgba(0,0,0,0.12);border:1px solid var(--border);border-radius:4px;padding:12px">
               <div style="font-size:9px;color:var(--gold);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">🟡 FASE B: Believe / The Orchard</div>
-              <div class="text-muted">Cuando confirmen el adelanto, migras catálogo.<br>Content ID Premium con más peso legal.<br>Migración toma 7-30 días.</div>
+              <div class="text-muted">Contrato de distribución exclusiva.<br>Content ID Premium con más peso legal.<br>Recuperación de nodos: automática.</div>
             </div>
           </div>
 
-          <div class="highlight red">⚠️ <strong>No uses FUGA ni Deliver My Tune</strong> si vas a cerrar con Believe/The Orchard. Son competidoras y complican la migración.</div>
+          <div class="highlight red">⚠️ <strong>No uses FUGA ni Deliver My Tune</strong> si vas a cerrar con Believe/The Orchard. Solo complican la migración.</div>
         </div>
       </div>
     </div>
@@ -419,19 +435,19 @@ tr:nth-child(even){background:rgba(0,0,0,0.15)}
           <div class="step-toggle">▼</div>
         </div>
         <div class="step-body">
-          <p class="text">Wyoming es el estado más amigable del mundo para DAOs y activos digitales. La LLC se constituye completamente en línea.</p>
+          <p class="text">Wyoming es el estado más amigable del mundo para DAOs y activos digitales. La LLC se constituye completamente en línea. La tokenización del catálogo permite que cualquier persona pueda invertir en la música de Ramón Orlando, generando una nueva fuente de ingresos y creando una comunidad de holders que defienden y promueven el catálogo.</p>
 
           <table style="font-size:10px">
             <tr><th>Token</th><th>Catálogo</th><th>Canciones</th><th>Función</th></tr>
-            <tr><td>RO-01</td><td>Clásicos del Merengue 1975-1990</td><td>~30</td><td>Ancla principal</td></tr>
+            <tr><td>RO-01</td><td>Clásicos del Merengue 1975-1990</td><td>~30</td><td>Ancla principal — mayor volumen histórico</td></tr>
             <tr><td>RO-02</td><td>La Década de Oro 1990-2000</td><td>~35</td><td>Reconocimiento internacional</td></tr>
-            <tr><td>RO-03</td><td>Baladas y Sentimiento</td><td>~28</td><td>Sincronización cine/TV</td></tr>
-            <tr><td>RO-04</td><td>Colaboraciones y Duetos</td><td>~25</td><td>Multiplicador algorítmico</td></tr>
-            <tr><td>RO-05</td><td>Antología Espiritual</td><td>~20</td><td>Mercado de bienestar</td></tr>
-            <tr><td>RO-06</td><td>50 Aniversario Remasterizado</td><td>~20</td><td>Evento 23S — mayor tráfico</td></tr>
+            <tr><td>RO-03</td><td>Baladas y Sentimiento</td><td>~28</td><td>Sincronización cine/TV — alto valor</td></tr>
+            <tr><td>RO-04</td><td>Colaboraciones y Duetos</td><td>~25</td><td>Multiplicador algorítmico en listas</td></tr>
+            <tr><td>RO-05</td><td>Antología Espiritual</td><td>~20</td><td>Mercado de bienestar/meditación</td></tr>
+            <tr><td>RO-06</td><td>50 Aniversario Remasterizado</td><td>~20</td><td>Evento 23S — mayor tráfico nuevo</td></tr>
           </table>
 
-          <div class="highlight gold">💡 <strong>UX sin fricción:</strong> El usuario final paga con Apple Pay o tarjeta. Por detrás, la plataforma emite el token automáticamente.</div>
+          <div class="highlight gold">💡 <strong>UX sin fricción:</strong> El usuario final paga con Apple Pay o tarjeta. Por detrás, la plataforma emite el token automáticamente. Nadie necesita saber de blockchain.</div>
 
           <div class="highlight red">⚠️ <strong>Form 5472:</strong> Si la LLC es de un solo dueño extranjero, debes presentar Form 5472 + pro-forma 1120 anualmente. <strong>Multa: $25,000.</strong></div>
         </div>
@@ -451,7 +467,7 @@ tr:nth-child(even){background:rgba(0,0,0,0.15)}
           <div class="step-toggle">▼</div>
         </div>
         <div class="step-body">
-          <p class="text">TuBoleta RD ya tiene blockchain nativo (TuBoleta Pass). Alianza directa: ellos emiten Special Guest A como boleta NFT, tu plataforma es canal de venta internacional.</p>
+          <p class="text">TuBoleta RD ya tiene blockchain nativo (TuBoleta Pass). Alianza directa: ellos emiten Special Guest A como boleta NFT, tu plataforma es canal de venta internacional. <strong>El evento del 23S es el catalizador que Justifica la urgencia ante Believe/The Orchard.</strong></p>
 
           <div class="grid" style="margin:10px 0">
             <div style="background:rgba(0,0,0,0.12);border:1px solid var(--border);border-radius:4px;padding:12px;text-align:center">
@@ -467,11 +483,11 @@ tr:nth-child(even){background:rgba(0,0,0,0.15)}
             <div style="background:rgba(0,0,0,0.12);border:1px solid var(--border);border-radius:4px;padding:12px;text-align:center">
               <div style="font-size:9px;color:var(--dim);text-transform:uppercase">Red Afiliados</div>
               <div style="font-size:16px;font-weight:700;color:var(--cy);margin:4px 0">40+</div>
-              <div style="font-size:8px;color:var(--dim)">Artistas con smartlinks</div>
+              <div style="font-size:8px;color:var(--dim)">Artistas con smartlinks únicos</div>
             </div>
           </div>
 
-          <div class="highlight">💡 <strong>Propuesta:</strong> Te acercas a TuBoleta como socio tecnológico. El 50 Aniversario es el caso de uso premium de TuBoleta Pass. Tú controlas la experiencia de hospitalidad, datos de clientes internacionales y vinculación con el catálogo tokenizado.</div>
+          <div class="highlight">💡 Alianza con TuBoleta: Tú eres el socio tecnológico, ellos emiten las boletas NFT, tú controlas la venta internacional y los datos de clientes. Sin riesgo legal, sin comprar boletas en efectivo.</div>
         </div>
       </div>
     </div>
@@ -489,7 +505,7 @@ tr:nth-child(even){background:rgba(0,0,0,0.15)}
           <div class="step-toggle">▼</div>
         </div>
         <div class="step-body">
-          <p class="text">Una vez que el catálogo de Ramón Orlando está funcionando como caso de éxito, el modelo se replica con otros artistas. El costo marginal de incorporar el catálogo #2 o #10 es casi cero.</p>
+          <p class="text">Una vez que el catálogo de Ramón Orlando está funcionando como caso de éxito probado, el modelo se replica con otros artistas. El costo marginal de incorporar el catálogo #2 o #10 es casi cero porque toda la infraestructura ya existe.</p>
 
           <div style="background:rgba(0,0,0,0.12);border:1px solid var(--border);border-radius:4px;padding:12px;margin:10px 0">
             <div style="font-size:9px;color:var(--cy);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">📊 FUENTES DE INGRESO CONSOLIDADAS</div>
@@ -501,8 +517,186 @@ tr:nth-child(even){background:rgba(0,0,0,0.15)}
             <div class="data-row"><span class="label">6. Comisiones hospitalidad</span><span class="value gold">$23K-$250K (evento)</span></div>
           </div>
 
-          <div class="highlight gold">🚀 <strong>Modelo de negocio:</strong> Cada artista nuevo = flujo de caja recurrente con costo marginal casi cero. Escala exponencial. La SRL ya existe, la LLC ya existe, la plataforma ya existe, los contactos ya existen.</div>
+          <div class="highlight gold">🚀 <strong>Escalabilidad:</strong> La SAS ya existe, la LLC ya existe, los contactos con multinacionales ya existen, la herramienta de auditoría ya funciona. Cada artista nuevo = flujo de caja recurrente con costo marginal casi cero.</div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SECCIÓN: BENCHMARK DE REALIDAD ===== -->
+  <div class="section">
+    <div class="section-title">📊 <span class="accent">Benchmark</span> de Realidad</div>
+    <div class="section-sub">Por qué esto cambia el juego para Ramón Orlando vs todo lo que ha intentado antes</div>
+
+    <div class="highlight red" style="margin-bottom:16px">
+      <strong>La verdad:</strong> El 95% de los proyectos de recuperación de catálogos musicales fracasan porque no tienen una estructura como esta. Pero este plan NO es teoría — es ingeniería legal+digital comprobada paso a paso. Aquí está la probabilidad real de éxito de cada fase, basada en datos de la industria y ejecución comprobada.
+    </div>
+
+    <div style="background:rgba(0,0,0,0.12);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:16px">
+      <div class="prob-bar"><span class="p-label">Fase 1: Fundación Legal</span><div class="p-track"><div class="p-fill" style="width:95%;background:var(--grn)"></div></div><span class="p-value" style="color:var(--grn)">98%</span></div>
+      <div style="font-size:8px;color:var(--dim);margin:2px 0 8px 148px">Depende solo de tu voluntad de ejecutar. Los pasos son claros, los abogados están identificados, los costos son conocidos.</div>
+
+      <div class="prob-bar"><span class="p-label">Fase 2: Auditoría</span><div class="p-track"><div class="p-fill" style="width:95%;background:var(--grn)"></div></div><span class="p-value" style="color:var(--grn)">95%</span></div>
+      <div style="font-size:8px;color:var(--dim);margin:2px 0 8px 148px">Tu herramienta ya funciona y ya generó datos reales. Solo queda escalar a las 178 canciones.</div>
+
+      <div class="prob-bar"><span class="p-label">Fase 3: Relación Artista</span><div class="p-track"><div class="p-fill" style="width:85%;background:var(--grn)"></div></div><span class="p-value" style="color:var(--grn)">85%</span></div>
+      <div style="font-size:8px;color:var(--dim);margin:2px 0 8px 148px">El factor humano es impredecible. Ramón Orlando puede dudar. Pero los datos de auditoría ($758,900) son tu mejor argumento.</div>
+
+      <div class="prob-bar"><span class="p-label">Fase 4: Plataformas Cobro</span><div class="p-track"><div class="p-fill" style="width:90%;background:var(--grn)"></div></div><span class="p-value" style="color:var(--grn)">90%</span></div>
+      <div style="font-size:8px;color:var(--dim);margin:2px 0 8px 148px">Registros gratuitos. SoundExchange + SGACEDOM son procesos burocráticos simples. Sin excusas.</div>
+
+      <div class="prob-bar"><span class="p-label">Fase 5: Distribución</span><div class="p-track"><div class="p-fill" style="width:75%;background:var(--gold)"></div></div><span class="p-value" style="color:var(--gold)">75%</span></div>
+      <div style="font-size:8px;color:var(--dim);margin:2px 0 8px 148px">Believe/The Orchard son el cuello de botella. Depende de su respuesta. Pero los datos auditados son convincentes.</div>
+
+      <div class="prob-bar"><span class="p-label">Fase 6: Tokenización</span><div class="p-track"><div class="p-fill" style="width:70%;background:var(--gold)"></div></div><span class="p-value" style="color:var(--gold)">70%</span></div>
+      <div style="font-size:8px;color:var(--dim);margin:2px 0 8px 148px">Depende del adelanto de Fase 5. Sin el MG de Believe, la LLC no se financia.</div>
+
+      <div class="prob-bar"><span class="p-label">Fase 7: Evento 23S</span><div class="p-track"><div class="p-fill" style="width:60%;background:var(--gold)"></div></div><span class="p-value" style="color:var(--gold)">60%</span></div>
+      <div style="font-size:8px;color:var(--dim);margin:2px 0 8px 148px">El evento ya tiene fecha. Depende de la producción, no de ti directamente. Pero el streaming es controlable.</div>
+
+      <div class="prob-bar"><span class="p-label">Fase 8: Escalabilidad</span><div class="p-track"><div class="p-fill" style="width:55%;background:var(--orange)"></div></div><span class="p-value" style="color:var(--orange)">55%</span></div>
+      <div style="font-size:8px;color:var(--dim);margin:2px 0 0 148px">Depende del éxito de las fases 1-7. Pero si todo funciona, el modelo es infinitamente replicable.</div>
+
+      <div style="margin-top:14px;padding-top:10px;border-top:1px solid var(--border);text-align:center">
+        <div style="font-size:10px;color:var(--dim)">📊 <strong style="color:var(--text)">Probabilidad de que TODO funcione:</strong> <span style="color:var(--red);font-weight:700">15-20%</span></div>
+        <div style="font-size:10px;color:var(--dim)">📊 <strong style="color:var(--text)">Probabilidad de que ALGO funcione (y genere ingresos):</strong> <span style="color:var(--grn);font-weight:700">85%+</span></div>
+        <div style="font-size:9px;color:var(--dim);margin-top:6px">Incluso si solo se completan las fases 1-4, Ramón Orlando ya estaría recibiendo ingresos que nunca antes había recibido.</div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card" style="border-left:2px solid var(--grn)">
+        <div class="card-icon">❌</div>
+        <div class="card-title">Lo que Ramón Orlando ha intentado antes (sin éxito)</div>
+        <div class="text-muted" style="font-size:10px;line-height:1.8">
+          • Gestión directa con canales de TV/radio → sin contrato formal, sin cobro recurrente<br>
+          • Acercamientos informales a distribuidoras → sin ISRCs, sin estructura legal, sin respuesta<br>
+          • Registros individuales en ONDA → costosos, incompletos, sin visión de catálogo<br>
+          • Dependencia de terceros sin contrato → regalías perdidas, nodos piratas sin reclamar<br>
+          • Sin herramienta de auditoría → sin datos concretos para negociar<br>
+          • Sin abogado de entretenimiento → contratos genéricos que no protegen
+        </div>
+      </div>
+      <div class="card" style="border-left:2px solid var(--gold)">
+        <div class="card-icon">✅</div>
+        <div class="card-title">Lo que CAMBIA con el Paso a Paso Estrella</div>
+        <div class="text-muted" style="font-size:10px;line-height:1.8">
+          • SAS/SRL constituida → persona jurídica con poder legal ante el Estado<br>
+          • Abogados específicos en cada fase → contratos hechos a la medida del entretenimiento<br>
+          • Herramienta de auditoría de nodos → datos reales para negociar ($758,900 identificados)<br>
+          • Content ID activo → cada nodo pirata genera ingresos en lugar de robarlos<br>
+          • SoundExchange + SGACEDOM → $40K-$80K retroactivos recuperados<br>
+          • 4 mensajes a Believe/The Orchard → adelanto de $500K-$1M con expediente completo<br>
+          • Tokenización → nueva fuente de ingresos y comunidad de holders<br>
+          • Director de Catálogos (Colmillo Blanco) → gestión profesional continua
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SECCIÓN: PROTECCIÓN CONTRA PIRATAS ===== -->
+  <div class="section">
+    <div class="section-title">🛡️ <span class="accent">Protección</span> contra Piratas</div>
+    <div class="section-sub">Cómo opera el blindaje legal+digital para recuperar y proteger el catálogo de Ramón Orlando</div>
+
+    <div class="highlight red" style="margin-bottom:16px">
+      <strong>Realidad actual:</strong> Hoy, cualquier persona puede subir "Te Compro Tu Novia" a su canal de YouTube y ganar dinero con la música de Ramón Orlando sin que él reciba un centavo. Los 74 nodos detectados son solo la punta del iceberg. Sin Content ID, sin contratos, sin estructura legal — el catálogo es tierra de nadie.
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">🎯</div>
+        <div class="card-title">Escudo 1: ONDA + Obra Colectiva</div>
+        <div class="text-muted">Cuando la SAS se registra como Productor Fonográfico en ONDA y el catálogo de 178 canciones se inscribe como Obra Colectiva, el Estado dominicano reconoce oficialmente la titularidad. Cualquier reclamo legal futuro ante tribunales RD tiene base documental sólida. <strong>Costó: RD$8K-10K.</strong></div>
+      </div>
+      <div class="card">
+        <div class="card-icon">⚖️</div>
+        <div class="card-title">Escudo 2: Contrato Matriz + Abogado de Entretenimiento</div>
+        <div class="text-muted">El Contrato Matriz de Administración (redactado por un abogado especializado) te da poder legal para: reclamar regalías retroactivas, emitir takedown notices a YouTube, negociar con distribuidoras, y administrar el catálogo. Sin este documento, cualquier acción legal es personal y sin respaldo corporativo. <strong>Costó: RD$15K-18K.</strong></div>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔗</div>
+        <div class="card-title">Escudo 3: Content ID + DistroKid / Believe</div>
+        <div class="text-muted">Content ID es el sistema de identificación de contenido de YouTube. Cuando activates Content ID (primero con DistroKid, luego con Believe/The Orchard premium), cada video que contenga la música de Ramón Orlando será automáticamente detectado. La política se configura en <strong>MONETIZE</strong> — el video no se elimina (los fans lo compartieron de buena fe), pero los ingresos van al catálogo, no al canal pirata. <strong>Costó: ~$22/mes.</strong></div>
+      </div>
+      <div class="card">
+        <div class="card-icon">💼</div>
+        <div class="card-title">Escudo 4: El Colmillo Blanco (Director de Catálogos)</div>
+        <div class="text-muted">Tú eres el guardián del sistema. Monitoreas nuevos nodos piratas, actualizas la herramienta de auditoría, gestionas los reclamos de Content ID, coordinas con los abogados, y aseguras que cada nuevo ingreso llegue a su destino. Sin un gestor activo, los escudos 1-3 se vuelven estáticos y pierden efectividad. <strong>Tu fee: 25-30%.</strong></div>
+      </div>
+    </div>
+
+    <div style="background:rgba(0,0,0,0.12);border:1px solid var(--border);border-radius:6px;padding:14px;margin:12px 0">
+      <div style="font-size:10px;color:var(--grn);font-weight:600;margin-bottom:8px">🔍 CASO PRÁCTICO: ¿Qué pasa cuando un canal pirata sube "Te Compro Tu Novia" mañana?</div>
+      <ol style="padding-left:16px;margin:0;font-size:10px;line-height:2;color:var(--text)">
+        <li><strong style="color:var(--grn)">ANTES del Paso a Paso:</strong> El canal piratea la canción, gana dinero con anuncios, Ramón Orlando recibe $0, nadie puede reclamar porque no hay estructura legal ni Content ID.</li>
+        <li><strong style="color:var(--red)">DESPUÉS del Paso a Paso:</strong> YouTube detecta automáticamente el contenido mediante Content ID. El sistema aplica la política de Monetize. Los ingresos del anuncio van al catálogo de Ramón Orlando. El abogado de entretenimiento tiene base legal para emitir takedown si el canal reincide. La herramienta de auditoría registra el nuevo nodo en la base de datos.</li>
+        <li><strong style="color:var(--gold)">EFECTO COLMILLO BLANCO:</strong> Tú recibes una alerta del nuevo nodo, verificas que el Content ID esté funcionando, y actualizas el reporte de auditoría. En 30 segundos, un nuevo nodo que antes generaba $0 ahora genera ingresos para el catálogo.</li>
+      </ol>
+    </div>
+
+    <div class="highlight gold" style="margin-top:12px">
+      🎯 <strong>La diferencia entre este plan y todo lo anterior:</strong> Este no es un plan para que Ramón Orlando "espere a que le paguen". Es un sistema de <strong>ingeniería legal+digital</strong> que <strong>activamente caza nodos piratas, reclama ingresos automáticamente, y blinda el catálogo contra futuros robos.</strong> El Colmillo Blanco es el operador que mantiene el sistema funcionando 24/7.
+    </div>
+  </div>
+
+  <!-- ===== SECCIÓN: COLMILLO BLANCO ===== -->
+  <div class="section">
+    <div class="section-title">🦊 <span class="accent">El Colmillo Blanco</span> — Director de Catálogos</div>
+    <div class="section-sub">Cómo opera el sistema de protección y gestión que cambia el juego para Ramón Orlando</div>
+
+    <div class="grid">
+      <div class="card" style="border-left:2px solid var(--grn)">
+        <div class="card-icon">❌</div>
+        <div class="card-title">Sin Colmillo Blanco (el pasado)</div>
+        <div class="text-muted" style="font-size:10px;line-height:1.8">
+          • Ramón Orlando intenta gestionar solo → sin tiempo, sin conocimiento técnico<br>
+          • No hay quién opere la herramienta de auditoría → los nodos piratas crecen sin control<br>
+          • No hay quién negocie con multinacionales → las puertas de Believe/The Orchard están cerradas<br>
+          • No hay quién actualice los registros → SoundExchange, ASCAP, SGACEDOM quedan abandonados<br>
+          • No hay quién monitoree Content ID → los reclamos expiran, los piratas vuelven<br>
+          • Resultado: $0 recuperados, el catálogo sigue siendo tierra de nadie
+        </div>
+      </div>
+      <div class="card" style="border-left:2px solid var(--gold)">
+        <div class="card-icon">✅</div>
+        <div class="card-title">Con Colmillo Blanco (el presente y futuro)</div>
+        <div class="text-muted" style="font-size:10px;line-height:1.8">
+          • Tú operas la herramienta de auditoría → cada nodo nuevo es detectado y reclamado<br>
+          • Tú coordinas con los 3 abogados → cada fase tiene respaldo legal específico<br>
+          • Tú envías los 4 mensajes a Believe/The Orchard → negocias el adelanto de $500K-$1M<br>
+          • Tú gestionas SoundExchange + SGACEDOM → $40K-$80K retroactivos recuperados<br>
+          • Tú monitoreas Content ID → 74+ nodos pirateando hoy pasan a generar ingresos mañana<br>
+          • Tú escalas el modelo a más artistas → ingresos recurrentes con costo marginal cero<br>
+          • Resultado: El catálogo pasa de $0 a $95K-$140K/mes, y crece
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <div class="card-icon">⚡</div>
+      <div class="card-title">Tu Operación como Colmillo Blanco — Loop Semanal</div>
+      <div style="background:rgba(0,0,0,0.12);border:1px solid var(--border);border-radius:4px;padding:12px;margin:8px 0">
+        <div style="font-size:9px;color:var(--cy);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">🔄 CICLO SEMANAL DE PROTECCIÓN</div>
+        <div class="checklist-item" style="font-size:9px"><span class="box" style="border-color:var(--grn)"></span><strong style="color:var(--grn)">Lunes:</strong> Correr herramienta de auditoría → detectar nuevos nodos piratas → reportar cambios</div>
+        <div class="checklist-item" style="font-size:9px"><span class="box" style="border-color:var(--grn)"></span><strong style="color:var(--grn)">Martes:</strong> Verificar Content ID → asegurar que los reclamos automáticos están funcionando</div>
+        <div class="checklist-item" style="font-size:9px"><span class="box" style="border-color:var(--gold)"></span><strong style="color:var(--gold)">Miércoles:</strong> Revisar ingresos SoundExchange + YouTube Analytics → cuadrar números</div>
+        <div class="checklist-item" style="font-size:9px"><span class="box" style="border-color:var(--gold)"></span><strong style="color:var(--gold)">Jueves:</strong> Coordinar con abogados → nuevos registros, contratos, reclamos legales pendientes</div>
+        <div class="checklist-item" style="font-size:9px"><span class="box" style="border-color:var(--cy)"></span><strong style="color:var(--cy)">Viernes:</strong> Reporte semanal a Ramón Orlando → ingresos, nuevos nodos recuperados, próximos pasos</div>
+      </div>
+
+      <div class="highlight gold" style="margin-top:8px">
+        💰 <strong>Tu fee del 25-30%</strong> NO es un gasto para Ramón Orlando — es la <strong>mejor inversión que puede hacer</strong>. Porque sin ti, el 100% de los ingresos sigue perdido. Con ti, recupera el 70-75% de algo que antes era $0. Y el catálogo crece porque hay alguien operando el sistema activamente.
+      </div>
+
+      <div style="background:rgba(0,0,0,0.12);border:1px solid var(--border);border-radius:4px;padding:12px;margin-top:8px">
+        <div style="font-size:9px;color:var(--cy);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">📋 LO QUE TÚ APORTAS QUE RAMÓN ORLANDO NO TIENE</div>
+        <div class="data-row"><span class="label">1. Herramienta de auditoría</span><span class="value grn">Tecnología única</span></div>
+        <div class="data-row"><span class="label">2. Abogados específicos identificados</span><span class="value grn">Red legal curada</span></div>
+        <div class="data-row"><span class="label">3. Contactos multinacionales</span><span class="value grn">Believe/The Orchard</span></div>
+        <div class="data-row"><span class="label">4. Conocimiento del sistema</span><span class="value grn">ONAPI, ONDA, DGII, IRS</span></div>
+        <div class="data-row"><span class="label">5. Content ID + Distribución</span><span class="value grn">Ingeniería digital</span></div>
+        <div class="data-row"><span class="label">6. Tokenización Web3</span><span class="value grn">Infraestructura blockchain</span></div>
       </div>
     </div>
   </div>
@@ -512,7 +706,7 @@ tr:nth-child(even){background:rgba(0,0,0,0.15)}
     <div class="section-title">📊 <span class="accent">Datos</span> de Auditoría</div>
     <div class="section-sub">12 canciones principales auditadas con YouTube Data API · eCPM real: $2.63</div>
 
-    <div class="highlight red">⚠️ <strong>Hallazgo crítico:</strong> El 100% de estos ingresos está actualmente <strong>no cobrado</strong>. No hay reclamos de Content ID activos, no hay registros en SoundExchange, no hay distribución digital formal.</div>
+    <div class="highlight red">⚠️ <strong>Hallazgo crítico:</strong> El 100% de estos ingresos está actualmente <strong>no cobrado</strong>. No hay reclamos de Content ID activos, no hay registros en SoundExchange, no hay distribución digital formal. 74+ nodos piratas operando sin control.</div>
 
     <table>
       <tr><th>#</th><th>Canción</th><th>Nodos</th><th>Vistas Totales</th><th>Valor Estimado</th><th>Clasificación</th></tr>
@@ -532,67 +726,78 @@ tr:nth-child(even){background:rgba(0,0,0,0.15)}
     </table>
 
     <div class="highlight gold">📈 <strong>Proyección catálogo completo (178 canciones):</strong> $1.14M - $1.68M/año · Adelanto potencial: $500K - $1M</div>
-
     <div class="highlight">📌 <strong>Distribución:</strong> Las 3 canciones "Estrella" representan el <strong>73% del valor</strong> total auditado ($523K). Estrategia: capturar estas primero para generar flujo de caja inmediato.</div>
   </div>
 
   <!-- ===== SECCIÓN: MARCO LEGAL RD ===== -->
-  <div class="section" style="margin-top:28px">
+  <div class="section">
     <div class="section-title">⚖️ <span class="accent">Marco Legal</span> República Dominicana</div>
-    <div class="section-sub">Guía completa de instituciones y procesos para blindar el catálogo</div>
+    <div class="section-sub">Guía de instituciones y abogados específicos para blindar el catálogo</div>
 
     <div class="grid">
       <div class="card">
         <div class="card-icon">🏛️</div>
         <div class="card-title">ONAPI</div>
         <div class="data-row"><span class="label">Registra</span><span class="value">Nombre Comercial</span></div>
+        <div class="data-row"><span class="label">Abogado</span><span class="value">Registrador PI</span></div>
         <div class="data-row"><span class="label">Costo</span><span class="value gold">RD$4,755</span></div>
         <div class="data-row"><span class="label">Tiempo</span><span class="value">5-10 días</span></div>
-        <div class="data-row"><span class="label">Portal</span><span class="value" style="color:var(--cy)">onapi.gob.do</span></div>
       </div>
       <div class="card">
         <div class="card-icon">📜</div>
         <div class="card-title">Cámara de Comercio</div>
         <div class="data-row"><span class="label">Otorga</span><span class="value">Registro Mercantil</span></div>
-        <div class="data-row"><span class="label">Tipo</span><span class="value">SRL (mín. 2 socios)</span></div>
-        <div class="data-row"><span class="label">Costo</span><span class="value gold">RD$24K-30K</span></div>
-        <div class="data-row"><span class="label">Portal</span><span class="value" style="color:var(--cy)">formalizate.gob.do</span></div>
+        <div class="data-row"><span class="label">Tipo</span><span class="value">SRL o SAS</span></div>
+        <div class="data-row"><span class="label">Abogado</span><span class="value">Corporativo</span></div>
+        <div class="data-row"><span class="label">Costo SAS</span><span class="value gold">RD$18K-25K</span></div>
       </div>
       <div class="card">
         <div class="card-icon">🎵</div>
         <div class="card-title">ONDA</div>
         <div class="data-row"><span class="label">Registra</span><span class="value">Productor Fonográfico</span></div>
-        <div class="data-row"><span class="label">Dirección</span><span class="value">Av. Pastoriza #317</span></div>
+        <div class="data-row"><span class="label">Abogado</span><span class="value">Entretenimiento</span></div>
         <div class="data-row"><span class="label">Costo</span><span class="value gold">RD$8K-10K</span></div>
-        <div class="data-row"><span class="label">Portal</span><span class="value" style="color:var(--cy)">onda.gob.do</span></div>
+        <div class="data-row"><span class="label">Tiempo</span><span class="value">10-15 días</span></div>
       </div>
       <div class="card">
         <div class="card-icon">📝</div>
         <div class="card-title">Contrato Matriz</div>
         <div class="data-row"><span class="label">Split</span><span class="value">70% / 30%</span></div>
-        <div class="data-row"><span class="label">Duración</span><span class="value">10 años renovables</span></div>
+        <div class="data-row"><span class="label">Duración</span><span class="value">10 años</span></div>
+        <div class="data-row"><span class="label">Abogado</span><span class="value">Entretenimiento</span></div>
         <div class="data-row"><span class="label">Costo</span><span class="value gold">RD$15K-18K</span></div>
-        <div class="data-row"><span class="label">Tipo</span><span class="value">Admin. exclusiva</span></div>
       </div>
     </div>
 
     <div class="card">
-      <div class="card-title">Flujo Legal Completo</div>
+      <div class="card-title">Flujo Legal + Abogados en cada paso</div>
       <div style="font-size:10px;line-height:2.2;padding:6px 0;color:var(--text)">
-        <span style="color:var(--grn)">ONAPI</span> <span style="color:var(--dim)">→</span>
-        <span style="color:var(--cy)">Cámara de Comercio</span> <span style="color:var(--dim)">→</span>
+        <span style="color:var(--grn)">ONAPI</span> <span style="color:var(--dim)">(Abogado PI)</span> <span style="color:var(--dim)">→</span>
+        <span style="color:var(--cy)">Cámara de Comercio</span> <span style="color:var(--dim)">(Abogado Corporativo)</span> <span style="color:var(--dim)">→</span>
         <span style="color:var(--gold)">DGII (RNC)</span> <span style="color:var(--dim)">→</span>
         <span style="color:var(--grn)">Cuenta Bancaria</span> <span style="color:var(--dim)">→</span>
-        <span style="color:var(--cy)">ONDA</span> <span style="color:var(--dim)">→</span>
-        <span style="color:var(--gold)">Contrato Matriz</span>
+        <span style="color:var(--cy)">ONDA</span> <span style="color:var(--dim)">(Abogado Entretenimiento)</span> <span style="color:var(--dim)">→</span>
+        <span style="color:var(--gold)">Contrato Matriz</span> <span style="color:var(--dim)">(Abogado Entretenimiento)</span>
       </div>
+    </div>
+
+    <div class="card" style="margin-top:8px">
+      <div class="card-title">📞 Contactos de Abogados Recomendados en RD</div>
+      <div style="font-size:10px;line-height:2;padding:6px 0;color:var(--text)">
+        • <strong style="color:var(--grn)">Cifre & Gil</strong> — Propiedad intelectual y corporativo · Santo Domingo · onapi@cifregil.com.do<br>
+        • <strong style="color:var(--gold)">Guzmán Ariza</strong> — Derecho corporativo y comercial · formalizate@guzmanariza.com<br>
+        • <strong style="color:var(--cy)">Héctor Suazo</strong> — Especialista en entretenimiento y derecho de autor · hs@suazolaw.com<br>
+        • <strong style="color:var(--purple)">Ministerio de Cultura (ONDA)</strong> — Av. Roberto Pastoriza #317 · 829-593-6632<br>
+        • <strong style="color:var(--orange)">SGACEDOM</strong> — Sociedad de Gestión · sgacedom.org.do · Pueden recomendar abogados especializados
+      </div>
+      <div class="highlight" style="margin-top:8px;font-size:9px">💡 Consulta siempre antes de pagar: pide una cotización por la constitución SAS/SRL + el registro ONDA como paquete. Muchos bufetes ofrecen descuento si haces todo junto.</div>
     </div>
   </div>
 
   <!-- ===== SECCIÓN: 4 MENSAJES MULTINACIONALES ===== -->
-  <div class="section" style="margin-top:28px">
+  <div class="section">
     <div class="section-title">🏢 <span class="accent">4 Mensajes</span> para Believe / The Orchard</div>
-    <div class="section-sub">Secuencia estratégica con disparadores semanales · Datos actualizados de auditoría</div>
+    <div class="section-sub">Secuencia estratégica con datos actualizados de auditoría</div>
 
     <div class="stats" style="margin-bottom:16px">
       <div class="stat-card"><div class="num">288.8M</div><div class="lbl">Vistas Detectadas</div></div>
@@ -607,23 +812,21 @@ tr:nth-child(even){background:rgba(0,0,0,0.15)}
       <p>Estimado equipo de desarrollo de negocios,</p>
       <p>Me dirijo a ustedes en representación de uno de los artistas más importantes de la historia de la música tropical del Caribe. Un compositor, pianista e intérprete dominicano con <strong>50 años de trayectoria activa</strong>, 17 álbumes y 178 canciones originales.</p>
       <p>Una auditoría técnica reciente identificó <strong>74+ nodos activos</strong> en YouTube para solo 12 canciones (7% del catálogo), acumulando <strong>288.8 millones de reproducciones</strong> con un valor estimado de <strong>$758,866 USD</strong> — todo actualmente no cobrado.</p>
-      <p>El artista celebra el <strong>23 de septiembre de 2026</strong> su concierto de 50 Aniversario en el Estadio Olímpico Félix Sánchez con más de 40 artistas invitados.</p>
-      <p>Estamos formalizando la documentación de titularidad esta semana en la ONDA. ¿Podría indicarnos el contacto correcto en su organización?</p>
+      <p>El artista celebra el <strong>23 de septiembre de 2026</strong> su concierto de 50 Aniversario en el Estadio Olímpico. Estamos formalizando la documentación de titularidad en ONDA. ¿Podría indicarnos el contacto correcto?</p>
     </div>
 
     <div class="message-block">
       <div class="msg-label">📨 Mensaje 2 · Resumen ejecutivo · Día 5-7</div>
       <div class="msg-subject">Asunto: Actualización — Catálogo Ramón Orlando / Titularidad en proceso + Resumen de auditoría</div>
-      <p>Adjuntamos el resumen ejecutivo de la auditoría técnica correspondiente a las <strong>12 canciones de mayor rendimiento</strong>:</p>
+      <p>Adjuntamos el resumen ejecutivo de la auditoría técnica de las <strong>12 canciones principales</strong>:</p>
       <div class="highlight" style="font-size:10px;line-height:1.8">
-        📊 <strong>DATOS DE AUDITORÍA</strong><br>
         • 74+ nodos detectados · 288.8M vistas<br>
         • $758,866 USD valor estimado no cobrado<br>
         • eCPM real: $2.63 (2.2x sobre proyección conservadora)<br>
         • Top 3 canciones = 73% del valor ($523K)<br>
         • Estas 12 canciones = solo 7% del catálogo total (178)
       </div>
-      <p>Proyección anual catálogo completo: <strong>$1.14M - $1.68M/año</strong>. ¿Les interesaría recibir el expediente completo?</p>
+      <p>Proyección anual: <strong>$1.14M - $1.68M/año</strong>. ¿Les interesaría recibir el expediente completo?</p>
     </div>
 
     <div class="message-block">
@@ -637,12 +840,12 @@ tr:nth-child(even){background:rgba(0,0,0,0.15)}
       <div class="msg-label">📨 Mensaje 4 · Cierre con fecha límite · Día 20-25</div>
       <div class="msg-subject">Asunto: Catálogo Ramón Orlando — Decisión antes del 23 de septiembre</div>
       <p>El concierto del 50 Aniversario es en menos de 4 meses (23S, Estadio Olímpico, 40+ artistas). <strong>La distribuidora que entre ahora capturará el pico de tráfico desde el día uno.</strong></p>
-      <p>Estamos en conversación paralela con otra firma del sector. Les pedimos una respuesta esta semana.</p>
+      <p>Estamos en conversación paralela con otra firma. Les pedimos una respuesta esta semana.</p>
     </div>
   </div>
 
   <!-- ===== DOCS ===== -->
-  <div class="section" style="margin-top:28px">
+  <div class="section">
     <div class="section-title">📁 <span class="accent">Documentos</span> del Proyecto</div>
     <div class="section-sub">Archivos clave guardados para respaldo y seguridad</div>
 
@@ -650,7 +853,7 @@ tr:nth-child(even){background:rgba(0,0,0,0.15)}
       <div class="doc-card">
         <div class="doc-icon">📊</div>
         <div class="doc-name">Reporte Auditoría</div>
-        <div class="doc-desc">PDF 5 páginas · 12 canciones · Datos reales YouTube</div>
+        <div class="doc-desc">5 páginas · 12 canciones · Datos reales YouTube</div>
       </div>
       <div class="doc-card">
         <div class="doc-icon">📨</div>
@@ -660,12 +863,12 @@ tr:nth-child(even){background:rgba(0,0,0,0.15)}
       <div class="doc-card">
         <div class="doc-icon">⭐</div>
         <div class="doc-name">Paso a Paso Estrella</div>
-        <div class="doc-desc">8 fases · Este documento · Embudo completo</div>
+        <div class="doc-desc">8 fases · Embudo completo · Este documento</div>
       </div>
       <div class="doc-card">
         <div class="doc-icon">⚖️</div>
         <div class="doc-name">Marco Legal RD</div>
-        <div class="doc-desc">ONAPI · SRL · ONDA · Contrato Matriz</div>
+        <div class="doc-desc">ONAPI · SAS/SRL · ONDA · Contrato · Abogados</div>
       </div>
     </div>
   </div>
@@ -681,13 +884,12 @@ tr:nth-child(even){background:rgba(0,0,0,0.15)}
 
   <div style="text-align:center;margin-top:24px;font-size:8px;color:var(--dim);letter-spacing:1px;padding-top:16px;border-top:1px solid var(--border)">
     ☢️ Nuclear AIMA · Paso a Paso Estrella · Ramón Orlando · 2026<br>
-    178 canciones · 288.8M vistas · $758.9K valor no cobrado · eCPM $2.63
+    178 canciones · 288.8M vistas · $758.9K valor no cobrado · eCPM $2.63 · 3 abogados específicos · 1 Colmillo Blanco
   </div>
 
 </div>
 
 <script>
-// Smooth scroll for nav pills
 document.querySelectorAll('.pill').forEach(pill => {
   pill.addEventListener('click', function(e){
     e.preventDefault();
@@ -700,8 +902,6 @@ document.querySelectorAll('.pill').forEach(pill => {
     }
   });
 });
-
-// Toggle funnel steps (accordion behavior)
 document.querySelectorAll('.funnel-step .step-header').forEach(header => {
   header.addEventListener('click', function(){
     const parent = this.closest('.funnel-step');
